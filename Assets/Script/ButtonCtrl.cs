@@ -1,20 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class ButtonCtrl : MonoBehaviour
 {
-    
-    public Transform[] hPosition;
-    public Transform[] vPosition;
+    public GameObject[] tile;
+    public GameObject[,] positions=new GameObject[5,5];
 
     public int X;
     public int Y;
     // Start is called before the first frame update
     void Start()
     {
-        X = 3;
-        Y = 3;
+        for (int i = 0; i < tile.Length; i++)
+        {
+            Map tileMap = tile[i].GetComponent<Map>();
+            positions[tileMap.H, tileMap.V] = tile[i];
+            //print(tile[i].name);
+        }
+        X = 2;
+        Y = 2;
         Move();
     }
 
@@ -41,12 +47,17 @@ public class ButtonCtrl : MonoBehaviour
                 X++;
                 break;
         }
+        if (X > 4) X = 4;
+        if (X < 0) X = 0;
+        if (Y > 4) Y = 4;
+        if (Y < 0) Y = 0;
         Move();
     }
 
     public void Move()
     {
-        var position = new Vector2(hPosition[X].position.x, vPosition[Y].position.y);
-        transform.position = position;
+        var position = new Vector3(positions[X, Y].transform.position.x, positions[X, Y].transform.position.y+0.1f,0);
+        //transform.position = position;
+        transform.DOMove(position, 0.1f);
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileMap : MonoBehaviour
+public class Map : MonoBehaviour
 {
     public int H;
     public int V;
