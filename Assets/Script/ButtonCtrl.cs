@@ -13,7 +13,9 @@ public class ButtonCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        X = 3;
+        Y = 3;
+        Move();
     }
 
     // Update is called once per frame
@@ -27,12 +29,16 @@ public class ButtonCtrl : MonoBehaviour
         switch (direction)
         {
             case 1:
+                X--;
                 break;
             case 2:
+                Y--;
                 break;
             case 3:
+                Y++;
                 break;
             case 4:
+                X++;
                 break;
         }
         Move();

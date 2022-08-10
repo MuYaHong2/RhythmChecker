@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2800672939828786413}
   - component: {fileID: 1492432594370310682}
+  - component: {fileID: 2434565814337909283}
   m_Layer: 0
   m_Name: PlayerMovePoint
   m_TagString: Untagged
@@ -84,3 +85,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2434565814337909283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9064333995006258078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa9314cc091a0f345989e5ee6ef81fcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  H: 0
+  V: 0
+  hDistance: {x: 0.6, y: -0.3}
+  vDistance: {x: -0.6, y: -0.3}
