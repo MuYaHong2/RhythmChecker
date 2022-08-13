@@ -9,16 +9,4 @@ public class GoToTwoStage : MonoBehaviour
     {
         SceneManager.LoadScene("");//괄호 안에 두번째 스테이지 이름 추가
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

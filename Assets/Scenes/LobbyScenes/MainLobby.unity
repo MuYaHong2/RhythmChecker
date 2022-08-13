@@ -978,7 +978,7 @@ GameObject:
   - component: {fileID: 1729599848}
   - component: {fileID: 1729599847}
   m_Layer: 5
-  m_Name: BackGround
+  m_Name: LobbyBackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1002,7 +1002,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0.000015259}
-  m_SizeDelta: {x: 745, y: 419}
+  m_SizeDelta: {x: 800, y: 430}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1729599847
 MonoBehaviour:
