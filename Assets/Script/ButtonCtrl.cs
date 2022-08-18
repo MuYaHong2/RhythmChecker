@@ -10,6 +10,10 @@ public class ButtonCtrl : MonoBehaviour
 
     public int X;
     public int Y;
+
+    public bool doTouch;
+    public bool isTouch;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,35 +27,37 @@ public class ButtonCtrl : MonoBehaviour
         Y = 2;
         Move();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        print(doTouch);
     }
-
     public void ButtonDown(int direction)
     {
-        switch (direction)
+        if (doTouch)
         {
-            case 1:
-                X--;
-                break;
-            case 2:
-                Y--;
-                break;
-            case 3:
-                Y++;
-                break;
-            case 4:
-                X++;
-                break;
+            switch (direction)
+            {
+                case 1:
+                    X--;
+                    break;
+                case 2:
+                    Y--;
+                    break;
+                case 3:
+                    Y++;
+                    break;
+                case 4:
+                    X++;
+                    break;
+            }
+            if (X > 4) X = 4;
+            if (X < 0) X = 0;
+            if (Y > 4) Y = 4;
+            if (Y < 0) Y = 0;
+            Move();
+            isTouch = true;
         }
-        if (X > 4) X = 4;
-        if (X < 0) X = 0;
-        if (Y > 4) Y = 4;
-        if (Y < 0) Y = 0;
-        Move();
+        
     }
 
     public void Move()
