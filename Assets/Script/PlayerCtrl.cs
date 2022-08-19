@@ -2,14 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
-public class ButtonCtrl : MonoBehaviour
+public class PlayerCtrl : MonoBehaviour
 {
     public GameObject[] tile;
     public GameObject[,] positions=new GameObject[5,5];
+    public Image hpBar;
 
     public int X;
     public int Y;
+
+    public float HP;
+
+    private float mxHP;
 
     public bool doTouch;
     public bool isTouch;
@@ -17,6 +23,7 @@ public class ButtonCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mxHP = HP;
         for (int i = 0; i < tile.Length; i++)
         {
             Map tileMap = tile[i].GetComponent<Map>();
@@ -30,6 +37,7 @@ public class ButtonCtrl : MonoBehaviour
     private void Update()
     {
         print(doTouch);
+        hpBar.fillAmount = HP / mxHP;
     }
     public void ButtonDown(int direction)
     {

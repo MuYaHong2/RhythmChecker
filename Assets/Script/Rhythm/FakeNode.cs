@@ -2,38 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UI;
 
-public class Beat : MonoBehaviour
+public class FakeNode : MonoBehaviour
 {
     private SpriteRenderer sr;
-    private ButtonCtrl buttonCtrl;
-    private NodeSpawn nodeSpawn;
+    private PlayerCtrl playerCtrl;
     private Color color;
 
     private bool _isTouch;
     private bool _isEnd;
-
     // Start is called before the first frame update
     void Start()
     {
-        buttonCtrl = FindObjectOfType<ButtonCtrl>();
+        playerCtrl = FindObjectOfType<PlayerCtrl>();
         sr = GetComponent<SpriteRenderer>();
-        color=new Color(1,1,1,1);
+        color = new Color(1, 1, 1, 1);
     }
 
     private void OnEnable()
     {
         _isEnd = false;
-        //sr.DOKill();
         transform.DOKill();
-        transform.DOMove(new Vector3(0, -4, 0), 1.5f).SetEase(Ease.Linear);//.OnComplete(() => { NodeSpawn._nodes.Release(gameObject); });
+        transform.DOMove(new Vector3(0, -4, 0), 1.5f).SetEase(Ease.Linear);
     }
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
-        if (transform.position.x==0)
+        if (transform.position.x == 0)
         {
             if (!_isEnd)
             {
@@ -41,10 +37,10 @@ public class Beat : MonoBehaviour
                 StartCoroutine(enumerator());
             }
         }
-        if (_isTouch && buttonCtrl.isTouch)
+        if (_isTouch && playerCtrl.isTouch)
         {
-            buttonCtrl.doTouch = false;
-            buttonCtrl.isTouch = false;
+            playerCtrl.doTouch = false;
+            playerCtrl.isTouch = false;
             _isTouch = false;
             if (!_isEnd)
             {
@@ -53,7 +49,7 @@ public class Beat : MonoBehaviour
                 sr.DOFade(0, 0.2f).OnComplete(() => { sr.color = color; });
                 StartCoroutine(enumerator());
             }
-            
+
         }
     }
 
@@ -61,7 +57,6 @@ public class Beat : MonoBehaviour
     {
         if (collision.CompareTag("touch"))
         {
-            buttonCtrl.doTouch = true;
             _isTouch = true;
         }
     }
@@ -72,12 +67,11 @@ public class Beat : MonoBehaviour
 
         Release();
     }
-
     private void Release()
     {
-        buttonCtrl.doTouch = false;
-        buttonCtrl.isTouch = false;
+        playerCtrl.doTouch = false;
+        playerCtrl.isTouch = false;
         _isTouch = false;
-        NodeSpawn._nodes.Release(gameObject);
+        NodeSpawn.fakeNodes.Release(gameObject);
     }
 }
