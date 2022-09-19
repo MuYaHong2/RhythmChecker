@@ -22,7 +22,7 @@ public class NodeSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bitTime = GameManager.instance.bitTime;
+        //bitTime = GameManager.instance.bitTime;
         nodes = new ObjectPool<GameObject>(() =>
         {
             return Instantiate(node);
@@ -56,7 +56,7 @@ public class NodeSpawn : MonoBehaviour
     void Update()
     {
         spawnTime += Time.deltaTime;
-        if (spawnTime >= bitTime)
+        if (spawnTime >= 1)
         {
             Transform _transform1 = nodes.Get().GetComponent<Transform>();
             _transform1.position = spawnPointR.transform.position;

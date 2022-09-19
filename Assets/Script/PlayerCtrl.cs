@@ -43,6 +43,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         if (doTouch)
         {
+            doTouch = false;
             switch (direction)
             {
                 case 1:
