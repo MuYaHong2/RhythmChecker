@@ -14,6 +14,8 @@ public class EnemySpawn : MonoBehaviour
 
     private int _X;
     private int _Y;
+
+    private float bitTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,8 +35,9 @@ public class EnemySpawn : MonoBehaviour
             enemy.SetActive(true);
             var readyPosition = new Vector2(range.transform.position.x, 6);
             enemy.transform.position = readyPosition;
-            var position = range.transform.position;
+            var position = new Vector2(range.transform.position.x, range.transform.position.y+1.2f);
             range.SetActive(false);
+            var attackPosition = 
             enemy.transform.DOMove(position, 0.1f);
             if (player.X == _X && player.Y == _Y)
             {

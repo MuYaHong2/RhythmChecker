@@ -17,9 +17,12 @@ public class NodeSpawn : MonoBehaviour
     public static IObjectPool<GameObject> fakeNodes;
 
     private float spawnTime;
+
+    private float bitTime;
     // Start is called before the first frame update
     void Start()
     {
+        bitTime = GameManager.instance.bitTime;
         nodes = new ObjectPool<GameObject>(() =>
         {
             return Instantiate(node);
@@ -53,11 +56,11 @@ public class NodeSpawn : MonoBehaviour
     void Update()
     {
         spawnTime += Time.deltaTime;
-        if (spawnTime >= speed)
+        if (spawnTime >= bitTime)
         {
             Transform _transform1 = nodes.Get().GetComponent<Transform>();
             _transform1.position = spawnPointR.transform.position;
-            Transform _transform2 = fakeNodes.Get().GetComponent<Transform>();
+            Transform _transform2 = fakeNodes.Get().GetComponent<Transform>();  
             _transform2.position = spawnPointL.transform.position;
             spawnTime = 0;          
         }
