@@ -72,7 +72,7 @@ public class PlayerCtrl : MonoBehaviour
 
     public void Move()
     {
-        var position = new Vector3(positions[X, Y].transform.position.x, positions[X, Y].transform.position.y+0.1f,0);
+        var position = new Vector3(positions[X, Y].transform.position.x, positions[X, Y].transform.position.y);
         //transform.position = position;
         transform.DOMove(position, 0.1f);
     }

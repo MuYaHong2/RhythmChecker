@@ -128,7 +128,13 @@ public class EnemySpawn : MonoBehaviour
     public void Attack()
     {
         enemyNum = Random.Range(0, 6);
-        //EnemyBasicCtrl enemyBasicCtrl = enemyChatter[enemyNum].Get().GetComponent<EnemyBasicCtrl>();
-        //enemyBasicCtrl.position = player.positions[player.X,player.Y].transform.position;
+        EnemyBasicCtrl enemyBasicCtrl = enemyChatter[enemyNum].Get().GetComponent<EnemyBasicCtrl>();
+        enemyBasicCtrl.position = player.positions[player.X,player.Y].transform.position;
+    }
+
+    public static void AttackRange(Vector2 position)
+    {
+        GameObject attackRange = enemyAttackRange.Get();
+        attackRange.transform.position = position;
     }
 }
