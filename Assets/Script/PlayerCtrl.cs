@@ -23,6 +23,7 @@ public class PlayerCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        doTouch = false;
         mxHP = HP;
         for (int i = 0; i < tile.Length; i++)
         {
