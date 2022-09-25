@@ -11,18 +11,34 @@ public class EnemySpawn : MonoBehaviour
     public GameObject[] enemy;
     public PlayerCtrl player;
 
-    public static IObjectPool<GameObject>[] enemyChatter;
+    public static IObjectPool<GameObject> pown;
+    public static IObjectPool<GameObject> night;
+    public static IObjectPool<GameObject> bishop;
+    public static IObjectPool<GameObject> queen;
+    public static IObjectPool<GameObject> king;
+
     public static IObjectPool<GameObject> enemyAttackRange;
 
-    private int _X;
-    private int _Y;
+    private EnemyBasicCtrl[] enemyCtrl;
+    private IObjectPool<GameObject> enemyChatter;
+
+    private int _front;
+    private int _rear;
+    private int _maxSize;
+    private int _index;
 
     private int enemyNum;
+
+    private bool _isReady;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyChatter[0] = new ObjectPool<GameObject>(() =>
+        _maxSize = 3;
+        enemyCtrl = new EnemyBasicCtrl[2];
+
+
+        pown = new ObjectPool<GameObject>(() =>
         {
             return Instantiate(enemy[0]);
         }, _pown =>
@@ -36,7 +52,7 @@ public class EnemySpawn : MonoBehaviour
             Destroy(_pown.gameObject);
         }, false, 10000);
 
-        enemyChatter[1] = new ObjectPool<GameObject>(() =>
+        night = new ObjectPool<GameObject>(() =>
         {
             return Instantiate(enemy[1]);
         }, _night =>
@@ -50,23 +66,23 @@ public class EnemySpawn : MonoBehaviour
             Destroy(_night.gameObject);
         }, false, 10000);
 
-        enemyChatter[2] = new ObjectPool<GameObject>(() =>
+        //enemyChatter[2] = new ObjectPool<GameObject>(() =>
+        //{
+        //    return Instantiate(enemy[2]);
+        //}, _rook =>
+        //{
+        //    _rook.gameObject.SetActive(true);
+        //}, _rook =>
+        //{
+        //    _rook.gameObject.SetActive(false);
+        //}, _rook =>
+        //{
+        //    Destroy(_rook.gameObject);
+        //}, false, 10000); 
+        
+        bishop = new ObjectPool<GameObject>(() =>
         {
             return Instantiate(enemy[2]);
-        }, _rook =>
-        {
-            _rook.gameObject.SetActive(true);
-        }, _rook =>
-        {
-            _rook.gameObject.SetActive(false);
-        }, _rook =>
-        {
-            Destroy(_rook.gameObject);
-        }, false, 10000); 
-        
-        enemyChatter[3] = new ObjectPool<GameObject>(() =>
-        {
-            return Instantiate(enemy[3]);
         }, _bishop =>
         {
             _bishop.gameObject.SetActive(true);
@@ -78,9 +94,9 @@ public class EnemySpawn : MonoBehaviour
             Destroy(_bishop.gameObject);
         }, false, 10000); 
         
-        enemyChatter[4] = new ObjectPool<GameObject>(() =>
+        queen = new ObjectPool<GameObject>(() =>
         {
-            return Instantiate(enemy[4]);
+            return Instantiate(enemy[3]);
         }, _queen =>
         {
             _queen.gameObject.SetActive(true);
@@ -92,9 +108,9 @@ public class EnemySpawn : MonoBehaviour
             Destroy(_queen.gameObject);
         }, false, 10000);
 
-        enemyChatter[5] = new ObjectPool<GameObject>(() =>
+        king = new ObjectPool<GameObject>(() =>
         {
-            return Instantiate(enemy[5]);
+            return Instantiate(enemy[4]);
         }, _king =>
         {
             _king.gameObject.SetActive(true);
@@ -119,22 +135,53 @@ public class EnemySpawn : MonoBehaviour
         {
             Destroy(_range.gameObject);
         }, false, 10000);
-    }
+    }    
 
-
-    // Update is called once per frame
-    
-
-    public void Attack()
+    public void EnemySpown()
     {
-        enemyNum = Random.Range(0, 6);
-        EnemyBasicCtrl enemyBasicCtrl = enemyChatter[enemyNum].Get().GetComponent<EnemyBasicCtrl>();
-        enemyBasicCtrl.position = player.positions[player.X,player.Y].transform.position;
+        if (!_isReady)
+        {
+            print("dfd");
+            _isReady = true;
+            return;
+        }
+        enemyNum = Random.Range(0, 5);
+        switch (enemyNum)
+        {
+            case 0:
+                enemyChatter = pown;
+                break;
+            case 1:
+                enemyChatter = night;
+                break;
+            case 2:
+                enemyChatter = bishop;
+                break;
+            case 3:
+                enemyChatter = queen;
+                break;
+            case 4:
+                enemyChatter = king;
+                break;
+        }
+        enemyCtrl[_rear] = enemyChatter.Get().GetComponent<EnemyBasicCtrl>();
+        enemyCtrl[_rear++].position = player.positions[player.X, player.Y].transform.position;
+        _isReady = false;
     }
 
     public static void AttackRange(Vector2 position)
     {
         GameObject attackRange = enemyAttackRange.Get();
         attackRange.transform.position = position;
+    }
+
+    public void Delete()
+    {
+        _front = (_front + 1) % _maxSize;
+    }
+
+    public void Attack()
+    {
+        
     }
 }

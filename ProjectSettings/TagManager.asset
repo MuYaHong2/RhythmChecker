@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - touch
+  - Pown
+  - Night
+  - Bishop
+  - Queen
+  - King
   layers:
   - Default
   - TransparentFX

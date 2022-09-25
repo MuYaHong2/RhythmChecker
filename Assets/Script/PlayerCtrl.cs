@@ -76,4 +76,9 @@ public class PlayerCtrl : MonoBehaviour
         //transform.position = position;
         transform.DOMove(position, 0.1f);
     }
+
+    public void GetDemeg()
+    {
+
+    }
 }

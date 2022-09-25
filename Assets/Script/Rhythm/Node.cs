@@ -34,6 +34,7 @@ public class Node : MonoBehaviour
     private void OnEnable()
     {
         _isEnd = false;
+        _isTouch = false;
         //sr.DOKill();
         transform.DOKill();
         spawnTime = TimeRecord.gameTime;
@@ -62,22 +63,26 @@ public class Node : MonoBehaviour
         if (TimeRecord.gameTime - spawnTime>=(bitTime-0.08)&& TimeRecord.gameTime - spawnTime <= (bitTime + 0.08))
         {
             playerCtrl.doTouch = true;
-            //_isTouch = true;
         }
         else if(TimeRecord.gameTime - spawnTime > (bitTime + 0.08))
         {
             playerCtrl.doTouch = false;
-            print(transform.position);
-            print(time);
+            //print(transform.position);
+            //print(time);
+            if (!playerCtrl.isTouch)
+            {
+                enemySpawn.EnemySpown();
+                enemySpawn.Attack();
+            }
             NodeSpawn.nodes.Release(gameObject);
         }
 
-        if (_isTouch && playerCtrl.isTouch)
-        {
-            playerCtrl.doTouch = false;
-            _isTouch = true;
+        //if (_isTouch && playerCtrl.isTouch)
+        //{
+        //    playerCtrl.doTouch = false;
+        //    _isTouch = true;
             
-        }
+        //}
     }
 
     //private void OnTriggerEnter2D(Collider2D collision)

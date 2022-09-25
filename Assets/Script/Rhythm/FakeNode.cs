@@ -50,12 +50,12 @@ public class FakeNode : MonoBehaviour
         var i = Mathf.Clamp01(value);
         var 위치 = startPos + moveRange * i * direction;
         transform.position = new Vector3(위치, -4, 0);
-        if (TimeRecord.gameTime - testTime >= (bitTime - 0.05) && TimeRecord.gameTime - testTime <= (bitTime + 0.062))
+        if (TimeRecord.gameTime - testTime >= (bitTime - 0.08) && TimeRecord.gameTime - testTime <= (bitTime + 0.08))
         {
             playerCtrl.doTouch = true;
             _isTouch = true;
         }
-        else if (TimeRecord.gameTime - testTime > (bitTime + 0.062))
+        else if (TimeRecord.gameTime - testTime > (bitTime + 0.08))
         {
             print(transform.position);
             //print(time);

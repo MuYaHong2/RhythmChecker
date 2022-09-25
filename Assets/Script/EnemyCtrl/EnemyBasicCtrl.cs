@@ -26,34 +26,40 @@ public class EnemyBasicCtrl : MonoBehaviour
     {
         if (CompareTag("Pown"))
         {
-            objectPool = EnemySpawn.enemyChatter[0];
+            objectPool = EnemySpawn.pown;
             maxAttackCount = 1;
+            PownReady();
         }
-        else if (CompareTag("Rook"))
-        {
-            objectPool = EnemySpawn.enemyChatter[2];
-            maxAttackCount = 1;
-        }
+        //else if (CompareTag("Rook"))
+        //{
+        //    objectPool = EnemySpawn.night;
+        //    maxAttackCount = 1;
+        //}
         else if (CompareTag("Bishop"))
         {
-            objectPool = EnemySpawn.enemyChatter[3];
+            objectPool = EnemySpawn.bishop;
             maxAttackCount = 1;
         }
         else if (CompareTag("Night"))
         {
-            objectPool = EnemySpawn.enemyChatter[1];
+            objectPool = EnemySpawn.night;
             maxAttackCount = Random.Range(2, 4); ;
         }
         else if (CompareTag("Queen"))
         {
-            objectPool = EnemySpawn.enemyChatter[4];
+            objectPool = EnemySpawn.queen;
             maxAttackCount = 2;
         }
         else if (CompareTag("King"))
         {
-            objectPool = EnemySpawn.enemyChatter[5];
+            objectPool = EnemySpawn.king;
             maxAttackCount = 3;
         }
+    }
+
+    public void Attack()
+    {
+        print("1");
     }
 
     private void PownReady()
