@@ -11,16 +11,16 @@ public class EnemySpawn : MonoBehaviour
     public GameObject[] enemy;
     public PlayerCtrl player;
 
-    public static IObjectPool<GameObject> pown;
-    public static IObjectPool<GameObject> night;
-    public static IObjectPool<GameObject> bishop;
-    public static IObjectPool<GameObject> queen;
-    public static IObjectPool<GameObject> king;
+    public static IObjectPool<EnemyBasicCtrl> pown;
+    public static IObjectPool<EnemyBasicCtrl> night;
+    public static IObjectPool<EnemyBasicCtrl> bishop;
+    public static IObjectPool<EnemyBasicCtrl> queen;
+    public static IObjectPool<EnemyBasicCtrl> king;
 
     public static IObjectPool<GameObject> enemyAttackRange;
 
     private EnemyBasicCtrl[] enemyCtrl;
-    private IObjectPool<GameObject> enemyChatter;
+    private IObjectPool<EnemyBasicCtrl> enemyChatter;
 
     private int _front;
     private int _rear;
@@ -35,12 +35,12 @@ public class EnemySpawn : MonoBehaviour
     void Start()
     {
         _maxSize = 3;
-        enemyCtrl = new EnemyBasicCtrl[2];
+        enemyCtrl = new EnemyBasicCtrl[100];
 
 
-        pown = new ObjectPool<GameObject>(() =>
+        pown = new ObjectPool<EnemyBasicCtrl>(() =>
         {
-            return Instantiate(enemy[0]);
+            return Instantiate(enemy[0]).GetComponent<EnemyBasicCtrl>();
         }, _pown =>
         {
             _pown.gameObject.SetActive(true);
@@ -52,9 +52,9 @@ public class EnemySpawn : MonoBehaviour
             Destroy(_pown.gameObject);
         }, false, 10000);
 
-        night = new ObjectPool<GameObject>(() =>
+        night = new ObjectPool<EnemyBasicCtrl>(() =>
         {
-            return Instantiate(enemy[1]);
+            return Instantiate(enemy[1]).GetComponent<EnemyBasicCtrl>();
         }, _night =>
         {
             _night.gameObject.SetActive(true);
@@ -80,9 +80,9 @@ public class EnemySpawn : MonoBehaviour
         //    Destroy(_rook.gameObject);
         //}, false, 10000); 
         
-        bishop = new ObjectPool<GameObject>(() =>
+        bishop = new ObjectPool<EnemyBasicCtrl>(() =>
         {
-            return Instantiate(enemy[2]);
+            return Instantiate(enemy[2]).GetComponent<EnemyBasicCtrl>();
         }, _bishop =>
         {
             _bishop.gameObject.SetActive(true);
@@ -94,9 +94,9 @@ public class EnemySpawn : MonoBehaviour
             Destroy(_bishop.gameObject);
         }, false, 10000); 
         
-        queen = new ObjectPool<GameObject>(() =>
+        queen = new ObjectPool<EnemyBasicCtrl>(() =>
         {
-            return Instantiate(enemy[3]);
+            return Instantiate(enemy[3]).GetComponent<EnemyBasicCtrl>();
         }, _queen =>
         {
             _queen.gameObject.SetActive(true);
@@ -108,9 +108,9 @@ public class EnemySpawn : MonoBehaviour
             Destroy(_queen.gameObject);
         }, false, 10000);
 
-        king = new ObjectPool<GameObject>(() =>
+        king = new ObjectPool<EnemyBasicCtrl>(() =>
         {
-            return Instantiate(enemy[4]);
+            return Instantiate(enemy[4]).GetComponent<EnemyBasicCtrl>();
         }, _king =>
         {
             _king.gameObject.SetActive(true);
@@ -141,7 +141,6 @@ public class EnemySpawn : MonoBehaviour
     {
         if (!_isReady)
         {
-            print("dfd");
             _isReady = true;
             return;
         }
@@ -165,7 +164,10 @@ public class EnemySpawn : MonoBehaviour
                 break;
         }
         enemyCtrl[_rear] = enemyChatter.Get().GetComponent<EnemyBasicCtrl>();
-        enemyCtrl[_rear++].position = player.positions[player.X, player.Y].transform.position;
+        enemyCtrl[_rear].position = player.positions[player.X, player.Y].transform.position;
+        enemyCtrl[_rear].player = player;
+        enemyCtrl[_rear].Ready();
+        _rear = (_rear + 1) % _maxSize;
         _isReady = false;
     }
 

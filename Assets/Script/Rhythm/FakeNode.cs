@@ -57,7 +57,7 @@ public class FakeNode : MonoBehaviour
         }
         else if (TimeRecord.gameTime - testTime > (bitTime + 0.08))
         {
-            print(transform.position);
+            //print(transform.position);
             //print(time);
             NodeSpawn.fakeNodes.Release(gameObject);
         }

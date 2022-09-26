@@ -10,6 +10,8 @@ public class NodeSpawn : MonoBehaviour
     public GameObject node;
     public GameObject fakeNode;
 
+    public PlayerCtrl player;
+    public EnemySpawn enemy;
 
     public float speed;
 
@@ -58,8 +60,8 @@ public class NodeSpawn : MonoBehaviour
         spawnTime += Time.deltaTime;
         if (spawnTime >= 1)
         {
-            Transform _transform1 = nodes.Get().GetComponent<Transform>();
-            _transform1.position = spawnPointR.transform.position;
+            Transform node = nodes.Get().GetComponent<Transform>();
+            node.transform.position = spawnPointR.transform.position;
             Transform _transform2 = fakeNodes.Get().GetComponent<Transform>();  
             _transform2.position = spawnPointL.transform.position;
             spawnTime = 0;          

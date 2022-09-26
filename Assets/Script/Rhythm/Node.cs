@@ -71,9 +71,10 @@ public class Node : MonoBehaviour
             //print(time);
             if (!playerCtrl.isTouch)
             {
-                enemySpawn.EnemySpown();
+                enemySpawn.EnemySpown();  
                 enemySpawn.Attack();
             }
+            playerCtrl.isTouch = false;
             NodeSpawn.nodes.Release(gameObject);
         }
 
