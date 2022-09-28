@@ -5,7 +5,7 @@ using UnityEngine;
 public class Stage : MonoBehaviour
 {
     public GameObject stageui;
-    public void StageOn()
+    public void StageOn()//.
     {
         stageui.gameObject.SetActive(true);
     }
