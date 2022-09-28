@@ -7,14 +7,14 @@ using DG.Tweening.Core.Easing;
 
 public class FakeNode : MonoBehaviour
 {
-    private SpriteRenderer sr;
+    //private SpriteRenderer sr;
     private PlayerCtrl playerCtrl;
-    private Color color;
+    //private Color color;
 
     private float bitTime;
 
-    private bool _isTouch;
-    private bool _isEnd;
+    //private bool _isTouch;
+    //private bool _isEnd;
 
     public float testTime;
 
@@ -22,14 +22,14 @@ public class FakeNode : MonoBehaviour
     void Start()
     {
         playerCtrl = FindObjectOfType<PlayerCtrl>();
-        sr = GetComponent<SpriteRenderer>();
-        color = new Color(1, 1, 1, 1);
+        //sr = GetComponent<SpriteRenderer>();
+        //color = new Color(1, 1, 1, 1);
         bitTime = GameManager.instance.bitTime;
     }
 
     private void OnEnable()
     {
-        _isEnd = false;
+        //_isEnd = false;
         transform.DOKill();
         testTime = TimeRecord.gameTime;
         //transform.DOMove(new Vector3(0, -4, 0), bitTime).SetEase(Ease.Linear);
@@ -50,14 +50,14 @@ public class FakeNode : MonoBehaviour
         var i = Mathf.Clamp01(value);
         var 위치 = startPos + moveRange * i * direction;
         transform.position = new Vector3(위치, -4, 0);
-        if (TimeRecord.gameTime - testTime >= (bitTime - 0.05) && TimeRecord.gameTime - testTime <= (bitTime + 0.062))
+        if (TimeRecord.gameTime - testTime >= (bitTime - 0.08) && TimeRecord.gameTime - testTime <= (bitTime + 0.08))
         {
             playerCtrl.doTouch = true;
-            _isTouch = true;
+            //_isTouch = true;
         }
-        else if (TimeRecord.gameTime - testTime > (bitTime + 0.062))
+        else if (TimeRecord.gameTime - testTime > (bitTime + 0.08))
         {
-            print(transform.position);
+            //print(transform.position);
             //print(time);
             NodeSpawn.fakeNodes.Release(gameObject);
         }
@@ -67,7 +67,7 @@ public class FakeNode : MonoBehaviour
     {
         if (collision.CompareTag("touch"))
         {
-            _isTouch = true;
+            //_isTouch = true;
         }
     }
 
@@ -81,7 +81,7 @@ public class FakeNode : MonoBehaviour
     {
         playerCtrl.doTouch = false;
         playerCtrl.isTouch = false;
-        _isTouch = false;
+        //_isTouch = false;
         NodeSpawn.fakeNodes.Release(gameObject);
     }
 }

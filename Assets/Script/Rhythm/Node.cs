@@ -10,10 +10,10 @@ public class Node : MonoBehaviour
     private PlayerCtrl playerCtrl;
     private EnemySpawn enemySpawn;
 
-    private Color color;
+    //private Color color;
 
-    private bool _isTouch;
-    private bool _isEnd;
+    //private bool _isTouch;
+    //private bool _isEnd;
 
     private float time;
 
@@ -27,19 +27,20 @@ public class Node : MonoBehaviour
         playerCtrl = FindObjectOfType<PlayerCtrl>();
         enemySpawn = FindObjectOfType<EnemySpawn>();
         sr = GetComponent<SpriteRenderer>();
-        color=new Color(1,1,1,1);
+        //color=new Color(1,1,1,1);
         bitTime = GameManager.instance.bitTime;
     }
 
     private void OnEnable()
     {
-        _isEnd = false;
+        //_isEnd = false;
+        //_isTouch = false;
         //sr.DOKill();
         transform.DOKill();
         spawnTime = TimeRecord.gameTime;
 
         time = 0;
-        //transform.DOMove(new Vector3(0, -4, 0), bitTime).SetEase(Ease.Linear);//.OnComplete(() => { NodeSpawn._nodes.Release(gameObject); });
+
     }
 
     // Update is called once per frame
@@ -59,32 +60,30 @@ public class Node : MonoBehaviour
         var 위치 = startPos + moveRange * i * direction;
         //print(TimeRecord.gameTime-testTime);
         transform.position = new Vector3(위치, -4, 0);
-        if (TimeRecord.gameTime - spawnTime>=(bitTime-0.05)&& TimeRecord.gameTime - spawnTime <= (bitTime + 0.062))
+        if (TimeRecord.gameTime - spawnTime>=(bitTime-0.08)&& TimeRecord.gameTime - spawnTime <= (bitTime + 0.08))
         {
             playerCtrl.doTouch = true;
-            //_isTouch = true;
         }
-        else if(TimeRecord.gameTime - spawnTime > (bitTime + 0.062))
+        else if(TimeRecord.gameTime - spawnTime > (bitTime + 0.08))
         {
-            print(transform.position);
-            print(time);
+            playerCtrl.doTouch = false;
+            //print(transform.position);
+            //print(time);
+            if (!playerCtrl.isTouch)
+            {
+                enemySpawn.Attack();
+                enemySpawn.EnemySpown();  
+            }
+            playerCtrl.isTouch = false;
             NodeSpawn.nodes.Release(gameObject);
         }
 
-        //if (transform.position.x==0)
+        //if (_isTouch && playerCtrl.isTouch)
         //{
-        //    if (!_isEnd)
-        //    {
-        //        _isEnd = true;
-        //        StartCoroutine(enumerator());
-        //    }
-        //}
-        if (_isTouch && playerCtrl.isTouch)
-        {
-            playerCtrl.doTouch = false;
-            _isTouch = false;
+        //    playerCtrl.doTouch = false;
+        //    _isTouch = true;
             
-        }
+        //}
     }
 
     //private void OnTriggerEnter2D(Collider2D collision)

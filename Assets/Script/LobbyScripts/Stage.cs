@@ -7,10 +7,10 @@ public class Stage : MonoBehaviour
     public GameObject stageui;
     public void StageOn()//.
     {
-        stageui.gameObject.SetActive(true);
+        stageui.SetActive(true);
     }
     public void StageOff()
     {
-        stageui.gameObject.SetActive(false);
+        stageui.SetActive(false);
     }
 }

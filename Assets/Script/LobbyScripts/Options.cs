@@ -7,10 +7,10 @@ public class Options : MonoBehaviour
     public GameObject Optionsui;
     public void OptionsOn()
     {
-        Optionsui.gameObject.SetActive(true);
+        Optionsui.SetActive(true);
     }
     public void OptionsOff()
     {
-        Optionsui.gameObject.SetActive(false);
+        Optionsui.SetActive(false);
     }
 }

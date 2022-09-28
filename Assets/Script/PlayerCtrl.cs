@@ -9,6 +9,7 @@ public class PlayerCtrl : MonoBehaviour
     public GameObject[] tile;
     public GameObject[,] positions=new GameObject[5,5];
     public Image hpBar;
+    public EnemySpawn enemySpawn;
 
     public int X;
     public int Y;
@@ -23,6 +24,7 @@ public class PlayerCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        doTouch = false;
         mxHP = HP;
         for (int i = 0; i < tile.Length; i++)
         {
@@ -36,11 +38,15 @@ public class PlayerCtrl : MonoBehaviour
     }
     private void Update()
     {
-        print(doTouch);
+        //print(doTouch);
         hpBar.fillAmount = HP / mxHP;
     }
     public void ButtonDown(int direction)
     {
+        if (isTouch)
+        {
+            return;
+        }
         if (doTouch)
         {
             doTouch = false;
@@ -63,6 +69,8 @@ public class PlayerCtrl : MonoBehaviour
             if (X < 0) X = 0;
             if (Y > 4) Y = 4;
             if (Y < 0) Y = 0;
+            enemySpawn.EnemySpown();
+            enemySpawn.Attack();
             Move();
             isTouch = true;
         }
@@ -71,8 +79,13 @@ public class PlayerCtrl : MonoBehaviour
 
     public void Move()
     {
-        var position = new Vector3(positions[X, Y].transform.position.x, positions[X, Y].transform.position.y+0.1f,0);
+        var position = new Vector3(positions[X, Y].transform.position.x, positions[X, Y].transform.position.y);
         //transform.position = position;
         transform.DOMove(position, 0.1f);
+    }
+
+    public void GetDemeg()
+    {
+
     }
 }
