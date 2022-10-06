@@ -41,13 +41,13 @@ public class GameManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
+        instance = this;
 
+        bitTime = 60 / bpm;
     }
 
     private void Start()
     {
-        instance = this;
-        bitTime = 60 / bpm;
     }
 
     

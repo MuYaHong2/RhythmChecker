@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Pool;
-
+using System;
+using Unity.VisualScripting;
 
 public class EnemySpawn : MonoBehaviour
 {
@@ -20,22 +21,28 @@ public class EnemySpawn : MonoBehaviour
     public static IObjectPool<GameObject> enemyAttackRange;
 
     private EnemyBasicCtrl[] enemyCtrl;
+    public bool[] isDestoried; 
     private IObjectPool<EnemyBasicCtrl> enemyChatter;
 
-    private int _front;
-    private int _rear;
+    //private int _front;
+    //private int _rear;
     private int _maxSize;
-    private int _index;
+    //private int _index;
 
     private int enemyNum;
 
-    private bool _isReady;
+    //private bool _isReady;
 
     // Start is called before the first frame update
     void Start()
     {
-        _maxSize = 3;
-        enemyCtrl = new EnemyBasicCtrl[3];
+        _maxSize = 5;
+        enemyCtrl = new EnemyBasicCtrl[_maxSize];
+        isDestoried = new bool[_maxSize];
+        for (int i = 0; i < isDestoried.Length; i++)
+        {
+            isDestoried[i] = true;
+        }
 
         pown = new ObjectPool<EnemyBasicCtrl>(() =>
         {
@@ -134,16 +141,16 @@ public class EnemySpawn : MonoBehaviour
         {
             Destroy(_range.gameObject);
         }, false, 10000);
-    }    
+    }
 
     public void EnemySpown()
     {
-        if (!_isReady)
-        {
-            _isReady = true;
-            return;
-        }
-        enemyNum = Random.Range(0, 5);
+        //if (!_isReady)
+        //{
+        //    _isReady = true;
+        //    return;
+        //}
+        enemyNum = UnityEngine.Random.Range(0, 5);
         switch (enemyNum)
         {
             case 0:
@@ -162,14 +169,26 @@ public class EnemySpawn : MonoBehaviour
                 enemyChatter = king;
                 break;
         }
-        enemyCtrl[_rear] = enemyChatter.Get().GetComponent<EnemyBasicCtrl>();
-        enemyCtrl[_rear].transform.position = new Vector3( player.transform.position.x, 7, 0);
-        enemyCtrl[_rear].position = player.positions[player.X, player.Y].transform.position;
-        enemyCtrl[_rear].player = player;
+        for (int i = 0; i < enemyCtrl.Length; i++)
+        {
+            if (isDestoried[i]==true)
+            {
+                isDestoried[i] = false;
+                enemyCtrl[i] = enemyChatter.Get().GetComponent<EnemyBasicCtrl>();
+                enemyCtrl[i].objectPool = enemyChatter;
+                enemyCtrl[i].transform.position = new Vector3(player.transform.position.x, 7, 0);
+                enemyCtrl[i].position = player.positions[player.X, player.Y].transform.position;
+                enemyCtrl[i].player = player;
+                enemyCtrl[i].num = i;
+                enemyCtrl[i].enemySpawn = this;
+                break;
+            }
+        }
+        
         //enemyCtrl[_rear].Ready();
-        _rear = (_rear + 1) % _maxSize;
+        //_rear = (_rear + 1) % _maxSize;
         //print(_rear);
-        _isReady = false;
+        //_isReady = false;
     }
 
     public static GameObject AttackRange(Vector2 position)
@@ -179,24 +198,24 @@ public class EnemySpawn : MonoBehaviour
         return attackRange;
     }
 
-    public void Delete()
+    public void Delete(int num)
     {
-        _front = (_front + 1) % _maxSize;
+        isDestoried[num] = true;
     }
+
+    
 
     public void Attack()
     {
         for (int i = 0; i < enemyCtrl.Length; i++)
         {
-            if (enemyCtrl[i]!=null)
+            if (isDestoried[i] == false)
             {
-                enemyCtrl[i].Attack();
+                if (enemyCtrl[i]!=null)
+                {
+                    enemyCtrl[i].Attack();
+                }
             }
         }
-    }
-
-    public void Release()
-    {
-        _front++;
     }
 }

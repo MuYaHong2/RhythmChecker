@@ -10,6 +10,7 @@ public class PlayerCtrl : MonoBehaviour
     public GameObject[,] positions=new GameObject[5,5];
     public Image hpBar;
     public EnemySpawn enemySpawn;
+    public Vector3 nowPos;
 
     public int X;
     public int Y;
@@ -36,11 +37,7 @@ public class PlayerCtrl : MonoBehaviour
         Y = 2;
         Move();
     }
-    private void Update()
-    {
-        //print(doTouch);
-        hpBar.fillAmount = HP / mxHP;
-    }
+    
     public void ButtonDown(int direction)
     {
         if (isTouch)
@@ -69,6 +66,7 @@ public class PlayerCtrl : MonoBehaviour
             if (X < 0) X = 0;
             if (Y > 4) Y = 4;
             if (Y < 0) Y = 0;
+            nowPos = positions[X, Y].transform.position;
             enemySpawn.EnemySpown();
             enemySpawn.Attack();
             Move();
@@ -86,6 +84,7 @@ public class PlayerCtrl : MonoBehaviour
 
     public void GetDemeg()
     {
-
+        HP--;
+        hpBar.fillAmount = HP / mxHP;
     }
 }
