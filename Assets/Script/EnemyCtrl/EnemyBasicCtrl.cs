@@ -14,16 +14,16 @@ public class EnemyBasicCtrl : MonoBehaviour
     public PlayerCtrl player;
     public EnemySpawn enemySpawn;
     public IObjectPool<EnemyBasicCtrl> objectPool;
-    public GameObject[] attackRanges;
+    private GameObject[] attackRanges;
 
-    public Vector3[] range;
+    private Vector3[] range;
 
     private GameObject attackRange;
 
     private Vector3 _startPos;
     private Vector3 _endPos;
 
-    public int _attackCount, _maxAttackCount, _i, _maxI, _h, _startPosNum, _line, _column, _matrix;
+    private int _attackCount, _maxAttackCount, _i, _maxI, _h, _startPosNum, _line, _column, _matrix;
      
     private bool _isReady;
     
