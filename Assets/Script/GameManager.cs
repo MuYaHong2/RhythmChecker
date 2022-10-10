@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    
-
     public static GameManager instance;
 
+    public int stageNum;
 
     public  float bpm;
     public float bitTime;
@@ -43,12 +42,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         instance = this;
 
-        bitTime = 60 / bpm;
     }
 
-    private void Start()
-    {
-    }
 
     
 }
