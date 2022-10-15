@@ -59,7 +59,7 @@ public class Node : MonoBehaviour
         var i = Mathf.Clamp01(value);
         var 위치 = startPos + moveRange * i * direction;
         //print(TimeRecord.gameTime-testTime);
-        transform.position = new Vector3(위치, -4, 0);
+        transform.position = new Vector3(위치, -4.3f, 0);
         if (TimeRecord.gameTime - spawnTime>=(bitTime-0.2)&& TimeRecord.gameTime - spawnTime <= (bitTime + 0.2))
         {
             playerCtrl.doTouch = true;

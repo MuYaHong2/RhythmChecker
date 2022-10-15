@@ -49,7 +49,7 @@ public class FakeNode : MonoBehaviour
         var value = EaseManager.Evaluate(Ease.Linear, (f, r, t, g) => 0, timeCount, moveTime, DOTween.defaultEaseOvershootOrAmplitude, DOTween.defaultEasePeriod);
         var i = Mathf.Clamp01(value);
         var 위치 = startPos + moveRange * i * direction;
-        transform.position = new Vector3(위치, -4, 0);
+        transform.position = new Vector3(위치, -4.3f, 0);
         if (TimeRecord.gameTime - testTime >= (bitTime - 0.2) && TimeRecord.gameTime - testTime <= (bitTime + 0.2))
         {
             playerCtrl.doTouch = true;

@@ -99,6 +99,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   H: 0
   V: 0
-  anchorPoint: {x: 0.02557454, y: 2.050092}
-  hDistance: {x: 1, y: -0.75}
-  vDistance: {x: -1, y: -0.75}
+  anchorPoint: {x: -0.018, y: 0}
+  hDistance: {x: 0.807, y: -0.475}
+  vDistance: {x: -0.807, y: -0.475}
