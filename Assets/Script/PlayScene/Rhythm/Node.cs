@@ -36,7 +36,7 @@ public class Node : MonoBehaviour
         //_isEnd = false;
         //_isTouch = false;
         //sr.DOKill();
-        transform.DOKill();
+        //transform.DOKill();
         spawnTime = TimeRecord.gameTime;
 
         time = 0;
@@ -48,7 +48,7 @@ public class Node : MonoBehaviour
     {
         time += Time.deltaTime;
         float startPos = -6;
-        float moveRange = 5.65f;
+        float moveRange = 5.613f;
 
         float timeCount = TimeRecord.gameTime-spawnTime;
         float moveTime = bitTime;
@@ -60,11 +60,11 @@ public class Node : MonoBehaviour
         var 위치 = startPos + moveRange * i * direction;
         //print(TimeRecord.gameTime-testTime);
         transform.position = new Vector3(위치, -4.3f, 0);
-        if (TimeRecord.gameTime - spawnTime>=(bitTime-0.2)&& TimeRecord.gameTime - spawnTime <= (bitTime + 0.2))
+        if (TimeRecord.gameTime - spawnTime>=(bitTime- 0.085) && TimeRecord.gameTime - spawnTime <= (bitTime + 0.085))
         {
             playerCtrl.doTouch = true;
         }
-        else if(TimeRecord.gameTime - spawnTime > (bitTime + 0.2))
+        else if(TimeRecord.gameTime - spawnTime > (bitTime + 0.085))
         {
             playerCtrl.doTouch = false;
             //print(transform.position);

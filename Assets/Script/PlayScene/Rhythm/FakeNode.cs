@@ -21,7 +21,7 @@ public class FakeNode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerCtrl = FindObjectOfType<PlayerCtrl>();
+        //playerCtrl = FindObjectOfType<PlayerCtrl>();
         //sr = GetComponent<SpriteRenderer>();
         //color = new Color(1, 1, 1, 1);
         bitTime = GameManager.instance.bitTime;
@@ -39,7 +39,7 @@ public class FakeNode : MonoBehaviour
     void Update()
     {
         float startPos = 6;
-        float moveRange = 5.65f;
+        float moveRange = 5.628f;
 
         float timeCount = TimeRecord.gameTime - testTime;
         float moveTime = bitTime;
@@ -48,14 +48,14 @@ public class FakeNode : MonoBehaviour
 
         var value = EaseManager.Evaluate(Ease.Linear, (f, r, t, g) => 0, timeCount, moveTime, DOTween.defaultEaseOvershootOrAmplitude, DOTween.defaultEasePeriod);
         var i = Mathf.Clamp01(value);
-        var 위치 = startPos + moveRange * i * direction;
-        transform.position = new Vector3(위치, -4.3f, 0);
-        if (TimeRecord.gameTime - testTime >= (bitTime - 0.2) && TimeRecord.gameTime - testTime <= (bitTime + 0.2))
+        var a = startPos + moveRange * i * direction;
+        transform.position = new Vector3(a, -4.3f, 0);
+        if (TimeRecord.gameTime - testTime >= (bitTime - 0.085) && TimeRecord.gameTime - testTime <= (bitTime + 0.085))
         {
-            playerCtrl.doTouch = true;
+           // playerCtrl.doTouch = true;
             //_isTouch = true;
         }
-        else if (TimeRecord.gameTime - testTime > (bitTime + 0.2))
+        else if (TimeRecord.gameTime - testTime > (bitTime + 0.085))
         {
             //print(transform.position);
             //print(time);

@@ -21,6 +21,9 @@ public class NodeSpawn : MonoBehaviour
     public static IObjectPool<GameObject> nodes;
     public static IObjectPool<GameObject> fakeNodes;
 
+    private Transform nodePos;
+    private Transform _transform2;
+
     private float spawnTime;
     private float bitTime;
     private float errorCount;
@@ -67,17 +70,17 @@ public class NodeSpawn : MonoBehaviour
         if (isStart)
         {
             spawnTime += Time.deltaTime;
-            if (spawnTime >= bitTime-errorCount)
+            if (spawnTime >= bitTime)
             {
-                errorCount = spawnTime - (bitTime-errorCount);
-                Transform node = nodes.Get().GetComponent<Transform>();
-                node.transform.position = spawnPointL.transform.position;
-                Transform _transform2 = fakeNodes.Get().GetComponent<Transform>();
+                errorCount = spawnTime - bitTime;
+                nodePos = nodes.Get().GetComponent<Transform>();
+                nodePos.position = spawnPointL.transform.position;
+                _transform2 = fakeNodes.Get().GetComponent<Transform>();
                 _transform2.position = spawnPointR.transform.position;
-                print(spawnTime);
-                //  print(errorCount);
+                //print(spawnTime);
+                print(errorCount);
                 spawnTime = 0;
-                //spawnTime -= errorCount;
+                spawnTime += errorCount;
             }
         }
         
@@ -109,8 +112,10 @@ public class NodeSpawn : MonoBehaviour
         yield return YieldInstructionCache.WaitForSeconds(bitTime);
         countText.text = "";
         //print(SoundManager.instance.audio);
-        SoundManager.Instance.MusicPlay();
         isStart = true;
+
+        yield return YieldInstructionCache.WaitForSeconds(Time.deltaTime);
+        SoundManager.Instance.MusicPlay();
         //StartCoroutine(BitPlay());
     }
 }

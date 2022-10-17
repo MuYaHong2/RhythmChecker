@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 public class PlayerCtrl : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class PlayerCtrl : MonoBehaviour
     public int Y;
 
     public float HP;
+
+    private Vector2 mousePos;
+    private Vector2 transPos;
 
     private float mxHP;
 
@@ -38,8 +42,18 @@ public class PlayerCtrl : MonoBehaviour
         Y = 2;
         Move();
     }
-    
-    public void ButtonDown(int direction)
+
+    private void Update()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            mousePos = Input.mousePosition;
+            transPos = Camera.main.ScreenToWorldPoint(mousePos);
+            ButtonDown();
+        }
+    }
+
+    public void ButtonDown()
     {
         if (isTouch)
         {
@@ -47,22 +61,38 @@ public class PlayerCtrl : MonoBehaviour
         }
         if (doTouch)
         {
-            doTouch = false;
-            switch (direction)
+            if (transPos.x > 0 && transPos.y > 0)
             {
-                case 1:
-                    X--;
-                    break;
-                case 2:
-                    Y--;
-                    break;
-                case 3:
-                    Y++;
-                    break;
-                case 4:
-                    X++;
-                    break;
+                Y--;
             }
+            else if (transPos.x > 0 && transPos.y < 0)
+            {
+                X++;
+            }
+            else if (transPos.x < 0 && transPos.y > 0)
+            {
+                X--;
+            }
+            else if (transPos.x < 0 && transPos.y < 0)
+            {
+                Y++;
+            }
+            //doTouch = false;
+            //switch (direction)
+            //{
+            //    case 1:
+            //        X--;
+            //        break;
+            //    case 2:
+            //        Y--;
+            //        break;
+            //    case 3:
+            //        Y++;
+            //        break;
+            //    case 4:
+            //        X++;
+            //        break;
+            //}
             if (X > 4) X = 4;
             if (X < 0) X = 0;
             if (Y > 4) Y = 4;

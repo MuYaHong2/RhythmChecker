@@ -100,5 +100,5 @@ MonoBehaviour:
   H: 0
   V: 0
   anchorPoint: {x: -0.018, y: 0}
-  hDistance: {x: 0.807, y: -0.475}
-  vDistance: {x: -0.807, y: -0.475}
+  hDistance: {x: 0.827, y: -0.475}
+  vDistance: {x: -0.827, y: -0.475}
