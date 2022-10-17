@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
+<<<<<<< Updated upstream
 
     }
 
@@ -49,6 +50,12 @@ public class GameManager : MonoBehaviour
         instance = this;
         bitTime = 60 / bpm;
     }
+=======
+        instance = this;
+        bitTime = 60 / bpm;
+    }
+    
+>>>>>>> Stashed changes
 
     
 }

@@ -56,15 +56,24 @@ public class Node : MonoBehaviour
 
         var value = EaseManager.Evaluate(Ease.Linear, (f, r, t, g) => 0, timeCount, moveTime, DOTween.defaultEaseOvershootOrAmplitude, DOTween.defaultEasePeriod);
         var i = Mathf.Clamp01(value);
-        var 위치 = startPos + moveRange * i * direction;
+        var pos = startPos + moveRange * i * direction;
         //print(TimeRecord.gameTime-testTime);
+<<<<<<< Updated upstream:Assets/Script/Rhythm/Node.cs
         transform.position = new Vector3(위치, -4, 0);
         if (TimeRecord.gameTime - spawnTime>=(bitTime-0.05)&& TimeRecord.gameTime - spawnTime <= (bitTime + 0.062))
+=======
+        transform.position = new Vector3(pos, -4.32f, 0);
+        if (TimeRecord.gameTime - spawnTime<=(bitTime- 0.15) && TimeRecord.gameTime - spawnTime >= (bitTime + 0.15))
+>>>>>>> Stashed changes:Assets/Script/PlayScene/Rhythm/Node.cs
         {
             playerCtrl.doTouch = true;
             //_isTouch = true;
         }
+<<<<<<< Updated upstream:Assets/Script/Rhythm/Node.cs
         else if(TimeRecord.gameTime - spawnTime > (bitTime + 0.062))
+=======
+        else if(TimeRecord.gameTime - spawnTime > (bitTime + 0.15))
+>>>>>>> Stashed changes:Assets/Script/PlayScene/Rhythm/Node.cs
         {
             print(transform.position);
             print(time);

@@ -49,13 +49,22 @@ public class FakeNode : MonoBehaviour
         var value = EaseManager.Evaluate(Ease.Linear, (f, r, t, g) => 0, timeCount, moveTime, DOTween.defaultEaseOvershootOrAmplitude, DOTween.defaultEasePeriod);
         var i = Mathf.Clamp01(value);
         var 위치 = startPos + moveRange * i * direction;
+<<<<<<< Updated upstream:Assets/Script/Rhythm/FakeNode.cs
         transform.position = new Vector3(위치, -4, 0);
         if (TimeRecord.gameTime - testTime >= (bitTime - 0.05) && TimeRecord.gameTime - testTime <= (bitTime + 0.062))
+=======
+        transform.position = new Vector3(위치, -4.32f, 0);
+        if (TimeRecord.gameTime - testTime >= (bitTime - 0.12) && TimeRecord.gameTime - testTime <= (bitTime + 0.12))
+>>>>>>> Stashed changes:Assets/Script/PlayScene/Rhythm/FakeNode.cs
         {
             playerCtrl.doTouch = true;
             _isTouch = true;
         }
+<<<<<<< Updated upstream:Assets/Script/Rhythm/FakeNode.cs
         else if (TimeRecord.gameTime - testTime > (bitTime + 0.062))
+=======
+        else if (TimeRecord.gameTime - testTime > (bitTime + 0.12))
+>>>>>>> Stashed changes:Assets/Script/PlayScene/Rhythm/FakeNode.cs
         {
             print(transform.position);
             //print(time);

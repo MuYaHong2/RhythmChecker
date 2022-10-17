@@ -26,8 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9064333995006258078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< Updated upstream
   m_LocalPosition: {x: 0.1361161, y: -0.37402233, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+=======
+  m_LocalPosition: {x: -0.001, y: -0.37402233, z: 0}
+  m_LocalScale: {x: 1, y: 1.2479, z: 1}
+>>>>>>> Stashed changes
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,6 +104,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   H: 0
   V: 0
+<<<<<<< Updated upstream
   anchorPoint: {x: 0, y: 2.707092}
   hDistance: {x: 1.21, y: -0.68}
   vDistance: {x: -1.21, y: -0.68}
+=======
+  anchorPoint: {x: -0.003, y: 0.76}
+  hDistance: {x: 0.902, y: -0.555}
+  vDistance: {x: -0.902, y: -0.555}
+>>>>>>> Stashed changes
