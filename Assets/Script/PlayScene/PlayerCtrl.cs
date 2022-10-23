@@ -9,6 +9,7 @@ public class PlayerCtrl : MonoBehaviour
 {
     public GameObject[] tile;
     public GameObject[,] positions=new GameObject[5,5];
+    public GameObject endMenu;
     public Image hpBar;
     public EnemySpawn enemySpawn;
     public Vector3 nowPos;
@@ -117,6 +118,16 @@ public class PlayerCtrl : MonoBehaviour
     {
         StartCoroutine(camaera.Shake());
         HP--;
+        if (HP<=0)
+        {
+            End();
+        }
         hpBar.fillAmount = HP / mxHP;
+    }
+
+    private void End()
+    {
+        Time.timeScale = 0;
+        endMenu.SetActive(true);
     }
 }

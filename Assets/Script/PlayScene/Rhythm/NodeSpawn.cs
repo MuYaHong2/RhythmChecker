@@ -24,8 +24,8 @@ public class NodeSpawn : MonoBehaviour
     private Transform nodePos;
     private Transform _transform2;
 
-    private float spawnTime;
-    private float bitTime;
+    private double spawnTime;
+    private double bpm;
     private float errorCount;
     private bool isStart;
     private bool isEnd;
@@ -33,7 +33,7 @@ public class NodeSpawn : MonoBehaviour
     void Start()
     {
 
-        bitTime = GameManager.instance.bitTime;
+        bpm = GameManager.instance.bpm;
         StartCoroutine(Count());
         nodes = new ObjectPool<GameObject>(() =>
         {
@@ -70,17 +70,19 @@ public class NodeSpawn : MonoBehaviour
         if (isStart)
         {
             spawnTime += Time.deltaTime;
-            if (spawnTime >= bitTime)
+            if (spawnTime >= 60 / bpm)
             {
-                errorCount = spawnTime - bitTime;
-                nodePos = nodes.Get().GetComponent<Transform>();
-                nodePos.position = spawnPointL.transform.position;
-                _transform2 = fakeNodes.Get().GetComponent<Transform>();
-                _transform2.position = spawnPointR.transform.position;
+                //errorCount =  60d / bpm;
+                nodes.Get();
+                fakeNodes.Get();
+                //nodePos = nodes.Get().GetComponent<Transform>();
+                //nodePos.position = spawnPointL.transform.position;
+                //_transform2 = fakeNodes.Get().GetComponent<Transform>();
+                //_transform2.position = spawnPointR.transform.position;
                 //print(spawnTime);
-                print(errorCount);
-                spawnTime = 0;
-                spawnTime += errorCount;
+                //print(errorCount);
+                //spawnTime = 0;
+                spawnTime -= (60d / bpm);
             }
         }
         
@@ -102,19 +104,19 @@ public class NodeSpawn : MonoBehaviour
     {
         //yield return YieldInstructionCache.w
         countText.text = "3";
-        countText.transform.DOScale(1, bitTime).ChangeStartValue(new Vector3(2, 2, 2));
-        yield return YieldInstructionCache.WaitForSeconds(bitTime);
+        countText.transform.DOScale(1, 60 / (float)bpm).ChangeStartValue(new Vector3(2, 2, 2));
+        yield return YieldInstructionCache.WaitForSeconds(60 / (float)bpm);
         countText.text = "2";
-        countText.transform.DOScale(1, bitTime).ChangeStartValue(new Vector3(2, 2, 2));
-        yield return YieldInstructionCache.WaitForSeconds(bitTime);
+        countText.transform.DOScale(1, 60 / (float)bpm).ChangeStartValue(new Vector3(2, 2, 2));
+        yield return YieldInstructionCache.WaitForSeconds(60 / (float)bpm);
         countText.text = "1";
-        countText.transform.DOScale(1, bitTime).ChangeStartValue(new Vector3(2, 2, 2));
-        yield return YieldInstructionCache.WaitForSeconds(bitTime);
+        countText.transform.DOScale(1, 60 / (float)bpm).ChangeStartValue(new Vector3(2, 2, 2));
+        yield return YieldInstructionCache.WaitForSeconds(60 / (float)bpm);
         countText.text = "";
         //print(SoundManager.instance.audio);
         isStart = true;
 
-        yield return YieldInstructionCache.WaitForSeconds(Time.deltaTime);
+        //yield return YieldInstructionCache.WaitForSeconds(Time.deltaTime);
         SoundManager.Instance.MusicPlay();
         //StartCoroutine(BitPlay());
     }
