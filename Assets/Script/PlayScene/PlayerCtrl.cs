@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class PlayerCtrl : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class PlayerCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         doTouch = false;
         mxHP = HP;
         for (int i = 0; i < tile.Length; i++)
@@ -129,5 +131,10 @@ public class PlayerCtrl : MonoBehaviour
     {
         Time.timeScale = 0;
         endMenu.SetActive(true);
+    }
+
+    public void end()
+    {
+        SceneManager.LoadScene("MainLobby");
     }
 }
