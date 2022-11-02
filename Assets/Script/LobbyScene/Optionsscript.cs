@@ -10,6 +10,6 @@ public class Optionsscript : MonoBehaviour
 
     public void OnSliderEvent(float value)
     {
-        text.text = $"Volum {value * 100:F1}";
+        text.text = $"{value * 100:F1}%";
     }
 }
