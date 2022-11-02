@@ -9,6 +9,7 @@ public class Stagescript : MonoBehaviour
     public GameObject Twopos;
     public GameObject Threepos;
 
+    public float movespeed;
     public float stagenum = 1f;
 
     private void Awake()
@@ -18,11 +19,11 @@ public class Stagescript : MonoBehaviour
     private void Update()
     {
         if (stagenum == 1)
-            stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Onepos.transform.position, 0.7f);
+            stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Onepos.transform.position, movespeed);
         else if(stagenum == 2)
-            stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Twopos.transform.position, 0.7f);
+            stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Twopos.transform.position, movespeed);
        else if(stagenum == 3)
-            stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Threepos.transform.position, 0.7f);
+            stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Threepos.transform.position, movespeed);
     }
 
     public void leftbutton()
