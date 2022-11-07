@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Stagescript : MonoBehaviour
 {
@@ -10,11 +12,11 @@ public class Stagescript : MonoBehaviour
     public GameObject Threepos;
 
     public float movespeed;
-    public float stagenum = 1f;
+    public int stagenum = 1;
 
     private void Awake()
     {
-        stagenum = 1f;
+        stagenum = 1;
     }
     private void Update()
     {
@@ -28,18 +30,24 @@ public class Stagescript : MonoBehaviour
 
     public void leftbutton()
     {
-        if (stagenum == 1f)
+        if (stagenum == 1)
             return;
         else
-            stagenum -= 1f;
+            stagenum -= 1;
     }
 
     public void rightbutton()
     {
-        if (stagenum == 3f)
+        if (stagenum == 3)
             return;
         else
-            stagenum += 1f;
+            stagenum += 1;
+    }
+
+    public void Play()
+    {
+        GameManager.instance.stageNum = stagenum-1;
+        SceneManager.LoadScene("PlayScene");
     }
 
     

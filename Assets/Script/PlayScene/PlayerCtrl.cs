@@ -130,6 +130,7 @@ public class PlayerCtrl : MonoBehaviour
     private void End()
     {
         Time.timeScale = 0;
+        SoundManager.instance.audio.Stop();
         endMenu.SetActive(true);
     }
 

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     public int stageNum;
 
-    public  float bpm;
+    public float bpm;
     public float bitTime;
     public static GameManager Instance
     {
@@ -44,6 +44,23 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        switch (stageNum + 1)
+        {
+            case 1:
+                bpm = 80;
+                break;
+            case 2:
+                bpm = 100;
+                break;
+            case 3:
+                bpm = 120;
+                break;
+        }
+        bitTime = 60 / bpm;
+    }
 
-    
+
+
 }

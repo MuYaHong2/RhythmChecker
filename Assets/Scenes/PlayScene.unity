@@ -1710,9 +1710,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musics:
+  - {fileID: 8300000, guid: 11e8b2eb2dd0b1340bec2630488166be, type: 3}
+  - {fileID: 8300000, guid: 1477809522584e84384e2239f79a6ef0, type: 3}
   - {fileID: 8300000, guid: fa67b760e3d45e840a5aad19f484cfb8, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
   audio: {fileID: 484467464}
 --- !u!4 &484467466
 Transform:
@@ -2391,7 +2391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &729399525
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3429,8 +3429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685b0b0d3ce6b2e4180404abf92e8746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageNum: 0
-  bpm: 120
+  stageNum: 1
+  bpm: 100
   bitTime: 0.5
 --- !u!4 &1078014204
 Transform:
@@ -5454,7 +5454,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 8953c0a03bbb941419a2420cab87f3ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
