@@ -7,14 +7,14 @@ public class Map : MonoBehaviour
     public int H;
     public int V;
 
-    public Vector2 anchorPoint;
+    public Vector2 oneAnchorPoint;
 
-    public Vector2 hDistance;
-    public Vector2 vDistance;
+    public Vector2 OneHorizontalDistance;
+    public Vector2 OneVerticalDistance;
     // Start is called before the first frame update
     void Awake()
     {
-        var position = anchorPoint + (hDistance * H) + (vDistance * V);
+        var position = oneAnchorPoint + (OneHorizontalDistance * H) + (OneVerticalDistance * V);
         transform.position = position;
     }
 }

@@ -104,13 +104,13 @@ public class NodeSpawn : MonoBehaviour
     {
         //yield return YieldInstructionCache.w
         countText.text = "3";
-        countText.transform.DOScale(1, 60 / (float)bpm).ChangeStartValue(new Vector3(2, 2, 2));
+        countText.transform.DOScale(1, 60 / (float)bpm).ChangeStartValue(new Vector3(3, 3, 3));
         yield return YieldInstructionCache.WaitForSeconds(60 / (float)bpm);
         countText.text = "2";
-        countText.transform.DOScale(1, 60 / (float)bpm).ChangeStartValue(new Vector3(2, 2, 2));
+        countText.transform.DOScale(1, 60 / (float)bpm).ChangeStartValue(new Vector3(3, 3, 3));
         yield return YieldInstructionCache.WaitForSeconds(60 / (float)bpm);
         countText.text = "1";
-        countText.transform.DOScale(1, 60 / (float)bpm).ChangeStartValue(new Vector3(2, 2, 2));
+        countText.transform.DOScale(1, 60 / (float)bpm).ChangeStartValue(new Vector3(3, 3, 3));
         yield return YieldInstructionCache.WaitForSeconds(60 / (float)bpm);
         countText.text = "";
         //print(SoundManager.instance.audio);

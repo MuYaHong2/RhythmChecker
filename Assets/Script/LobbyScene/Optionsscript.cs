@@ -10,6 +10,7 @@ public class Optionsscript : MonoBehaviour
 
     public void OnSliderEvent(float value)
     {
-        text.text = $"{value * 100:F1}%";
+        text.text = $"{value * 100:F0}%";
+        SoundManager.Instance.VolumeCtrl(value/2);
     }
 }

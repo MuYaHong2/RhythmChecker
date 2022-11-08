@@ -48,4 +48,9 @@ public class SoundManager : MonoBehaviour
         audio.clip = musics[GameManager.instance.stageNum];
         audio.Play();
     }
+
+    public void VolumeCtrl(float i)
+    {
+        audio.volume = i;
+    }
 }
