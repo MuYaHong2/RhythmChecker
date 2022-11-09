@@ -4,17 +4,16 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 
 public class PlayerCtrl : MonoBehaviour
 {
     public GameObject[] tile;
     public GameObject[,] positions=new GameObject[5,5];
-    public GameObject endMenu;
     public Image hpBar;
     public EnemySpawn enemySpawn;
     public Vector3 nowPos;
     public CamaeraCtrl camaera;
+    public PlaySceneDirector director;
 
     public int X;
     public int Y;
@@ -48,7 +47,7 @@ public class PlayerCtrl : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             mousePos = Input.mousePosition;
             transPos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -67,18 +66,22 @@ public class PlayerCtrl : MonoBehaviour
             if (transPos.x > 0 && transPos.y > 0)
             {
                 Y--;
+                transform.rotation = Quaternion.Euler(0, -180, 0);
             }
             else if (transPos.x > 0 && transPos.y < 0)
             {
                 X++;
+                transform.rotation = Quaternion.Euler(0, -180, 0);
             }
             else if (transPos.x < 0 && transPos.y > 0)
             {
                 X--;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             else if (transPos.x < 0 && transPos.y < 0)
             {
                 Y++;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             //doTouch = false;
             //switch (direction)
@@ -122,20 +125,12 @@ public class PlayerCtrl : MonoBehaviour
         HP--;
         if (HP<=0)
         {
-            End();
+            director.End();
         }
         hpBar.fillAmount = HP / mxHP;
     }
 
-    private void End()
-    {
-        Time.timeScale = 0;
-        SoundManager.instance.audio.Stop();
-        endMenu.SetActive(true);
-    }
+    
 
-    public void end()
-    {
-        SceneManager.LoadScene("MainLobby");
-    }
+    
 }

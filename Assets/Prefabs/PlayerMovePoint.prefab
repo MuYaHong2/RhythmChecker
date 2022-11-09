@@ -100,5 +100,8 @@ MonoBehaviour:
   H: 0
   V: 0
   oneAnchorPoint: {x: -0.056, y: -0.257}
-  OneHorizontalDistance: {x: 0.765, y: -0.407}
-  OneVerticalDistance: {x: -0.765, y: -0.407}
+  oneHorizontalDistance: {x: 0.765, y: -0.407}
+  oneVerticalDistance: {x: -0.765, y: -0.407}
+  twoAnchorPoint: {x: 0.067, y: -0.112}
+  twoHorizontalDistance: {x: 0.775, y: -0.41}
+  twoVerticalDistance: {x: -0.775, y: -0.41}

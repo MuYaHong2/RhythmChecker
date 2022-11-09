@@ -8,7 +8,9 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip[] musics;
 
-    public AudioSource audio;
+    public AudioSource audioSource;
+
+    public float musicTime;
 
     public static SoundManager Instance
     {
@@ -40,17 +42,20 @@ public class SoundManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
-        audio = gameObject.GetComponent<AudioSource>();
+        
+
     }
 
     public void MusicPlay()
     {
-        audio.clip = musics[GameManager.instance.stageNum];
-        audio.Play();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = musics[GameManager.instance.stageNum-1];
+        musicTime = audioSource.clip.length;
+        audioSource.Play();
     }
 
     public void VolumeCtrl(float i)
     {
-        audio.volume = i;
+        audioSource.volume = i;
     }
 }

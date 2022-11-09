@@ -12,41 +12,54 @@ public class Stagescript : MonoBehaviour
     public GameObject Threepos;
 
     public float movespeed;
-    public int stagenum = 1;
+    public int stageNum = 1;
 
     private void Awake()
     {
-        stagenum = 1;
+        stageNum = 1;
     }
     private void Update()
     {
-        if (stagenum == 1)
+        if (stageNum == 1)
             stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Onepos.transform.position, movespeed);
-        else if(stagenum == 2)
+        else if(stageNum == 2)
             stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Twopos.transform.position, movespeed);
-       else if(stagenum == 3)
+       else if(stageNum == 3)
             stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Threepos.transform.position, movespeed);
     }
 
     public void leftbutton()
     {
-        if (stagenum == 1)
+        if (stageNum == 1)
             return;
         else
-            stagenum -= 1;
+            stageNum -= 1;
     }
 
     public void rightbutton()
     {
-        if (stagenum == 3)
+        if (stageNum == 3)
             return;
         else
-            stagenum += 1;
+            stageNum += 1;
     }
 
     public void Play()
     {
-        GameManager.instance.stageNum = stagenum-1;
+        GameManager.instance.stageNum = stageNum;
+        switch ((stageNum))
+        {
+            case 1:
+                GameManager.instance.bpm = 80;
+                break;
+            case 2:
+                GameManager.instance.bpm = 100;
+                break;
+            case 3:
+                GameManager.instance.bpm = 120;
+                break;
+        }
+        GameManager.instance.bitTime = 60 / GameManager.instance.bpm;
         SceneManager.LoadScene("PlayScene");
     }
 

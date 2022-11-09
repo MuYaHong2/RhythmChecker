@@ -14,6 +14,7 @@ public class NodeSpawn : MonoBehaviour
 
     public PlayerCtrl player;
     public EnemySpawn enemy;
+    public PlaySceneDirector director;
     public TMP_Text countText;
 
     public float speed;
@@ -115,7 +116,7 @@ public class NodeSpawn : MonoBehaviour
         countText.text = "";
         //print(SoundManager.instance.audio);
         isStart = true;
-
+        director.isStart = true;
         //yield return YieldInstructionCache.WaitForSeconds(Time.deltaTime);
         SoundManager.Instance.MusicPlay();
         //StartCoroutine(BitPlay());
