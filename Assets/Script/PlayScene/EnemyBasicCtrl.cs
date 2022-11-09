@@ -290,10 +290,10 @@ public class EnemyBasicCtrl : MonoBehaviour
             switch (_startPosNum)
             {
                 case 0:
-                    transform.position = new Vector3(8, range[0].y);
+                    //transform.position = new Vector3(8, range[0].y);
                     break;
                 case 1:
-                    transform.position = new Vector3(-8, range[0].y);
+                    //transform.position = new Vector3(-8, range[0].y);
                     break;
             }
         }

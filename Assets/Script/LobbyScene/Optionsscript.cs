@@ -13,4 +13,9 @@ public class Optionsscript : MonoBehaviour
         text.text = $"{value * 100:F0}%";
         SoundManager.Instance.VolumeCtrl(value/2);
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

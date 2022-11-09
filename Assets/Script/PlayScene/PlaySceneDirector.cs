@@ -19,7 +19,7 @@ public class PlaySceneDirector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        musicTime = 150;
+        musicTime = 120;
         print(musicTime);
     }
 
@@ -32,10 +32,19 @@ public class PlaySceneDirector : MonoBehaviour
         }
         if (gameTime>=musicTime)
         {
-            End();
+            Clear();
         }
         print(gameTime);
     }
+
+    public void Clear()
+    {
+        Time.timeScale = 0;
+        SoundManager.Instance.audioSource.Stop();
+        clearMenu.SetActive(true);
+        endMenu.SetActive(true);
+    }
+
     public void End()
     {
         Time.timeScale = 0;

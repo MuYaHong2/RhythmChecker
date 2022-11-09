@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public int stageNum;
 
+    public float volume;
     public float bpm;
     public float bitTime;
     public static GameManager Instance
