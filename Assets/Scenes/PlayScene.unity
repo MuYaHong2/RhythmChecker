@@ -1620,7 +1620,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1718,7 +1718,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 11e8b2eb2dd0b1340bec2630488166be, type: 3}
   - {fileID: 8300000, guid: 1477809522584e84384e2239f79a6ef0, type: 3}
   - {fileID: 8300000, guid: fa67b760e3d45e840a5aad19f484cfb8, type: 3}
-  audioSource: {fileID: 0}
+  lobbyMusic: {fileID: 8300000, guid: 561ffd0e9b09f03448cd4127b395e760, type: 3}
+  audioSource: {fileID: 484467464}
   musicTime: 0
 --- !u!4 &484467466
 Transform:
@@ -2373,7 +2374,7 @@ MonoBehaviour:
   hpBar: {fileID: 322576865}
   enemySpawn: {fileID: 944946557}
   nowPos: {x: 0, y: 0, z: 0}
-  camaera: {fileID: 921576152}
+  camera: {fileID: 921576152}
   director: {fileID: 944946559}
   X: 0
   Y: 0
@@ -3091,6 +3092,7 @@ MonoBehaviour:
   - {fileID: 8539818651302501382, guid: 52f66fad088ff564f844d3aea24917ec, type: 3}
   - {fileID: 9144931279132152854, guid: 9e9e6bc0f088f134e85ddd3d4566976e, type: 3}
   player: {fileID: 725680504}
+  camera: {fileID: 921576152}
   isDestoried: 
 --- !u!114 &944946558
 MonoBehaviour:

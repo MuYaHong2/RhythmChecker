@@ -105,6 +105,8 @@ MonoBehaviour:
   player: {fileID: 0}
   enemySpawn: {fileID: 0}
   attackRanges: []
+  attackSoundEffect1: {fileID: 8300000, guid: eb289be13db2d1a4dbdecebc07713284, type: 3}
+  attackSoundEffect2: {fileID: 8300000, guid: bcdf1cfe76c2ced49a66a787825e97dc, type: 3}
   range: []
 --- !u!1 &6319768800020410508
 GameObject:

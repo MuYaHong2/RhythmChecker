@@ -15,6 +15,11 @@ public class EnemyBasicCtrl : MonoBehaviour
     public EnemySpawn enemySpawn;
     public IObjectPool<EnemyBasicCtrl> objectPool;
     public GameObject[] attackRanges;
+    public CameraCtrl camera;
+
+    public AudioClip attackSoundEffect1;
+    public AudioClip attackSoundEffect2;
+
 
     public Vector3[] range;
 
@@ -187,6 +192,8 @@ public class EnemyBasicCtrl : MonoBehaviour
 
     private void PownAttack()
     {
+        SoundManager.instance.audioSource.PlayOneShot(attackSoundEffect1);
+
         if (gameObject.CompareTag("Night"))
         {
             transform.position = new Vector3(position.x, 7);
@@ -194,6 +201,7 @@ public class EnemyBasicCtrl : MonoBehaviour
         EnemySpawn.enemyAttackRange.Release(attackRange);
         transform.DOMove(position, 0.1f).OnComplete(() =>
         {
+            StartCoroutine(camera.Shake());
             if (position==player.transform.position)
             {
                 player.GetDemeg();
@@ -303,6 +311,8 @@ public class EnemyBasicCtrl : MonoBehaviour
 
     private void BishopAttack()
     {
+        SoundManager.instance.audioSource.PlayOneShot(attackSoundEffect2);
+
         //for (int i = 0; i < range.Length-1; i++)
         //{
         //    print(range[i]);
@@ -325,6 +335,7 @@ public class EnemyBasicCtrl : MonoBehaviour
         //print(startPos);
         transform.DOMove(_endPos, 0.25f).OnComplete(() =>
         {
+            StartCoroutine(camera.Shake());
             //_attackCount++;
             if (_attackCount<_maxAttackCount)
             {
@@ -372,7 +383,8 @@ public class EnemyBasicCtrl : MonoBehaviour
 
     private void RookAttack()
     {
-        
+        SoundManager.instance.audioSource.PlayOneShot(attackSoundEffect2);
+
         switch (_startPosNum)
         {
             case 0:
@@ -390,6 +402,7 @@ public class EnemyBasicCtrl : MonoBehaviour
         
         transform.DOMove(_endPos, 0.25f).OnComplete(() =>
         {
+            StartCoroutine(camera.Shake());
             //_attackCount++;
             //Ready();
         });

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
 
     public AudioClip[] musics;
+    public AudioClip lobbyMusic;
 
     public AudioSource audioSource;
 
@@ -46,6 +48,11 @@ public class SoundManager : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        MainLobbyMusic();
+    }
+
     public void MusicPlay()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
@@ -57,5 +64,11 @@ public class SoundManager : MonoBehaviour
     public void VolumeCtrl(float i)
     {
         audioSource.volume = i;
+    }
+
+    public void MainLobbyMusic()
+    {
+        audioSource.clip = lobbyMusic;
+        audioSource.Play();
     }
 }

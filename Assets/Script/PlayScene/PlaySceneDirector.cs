@@ -34,7 +34,7 @@ public class PlaySceneDirector : MonoBehaviour
         {
             Clear();
         }
-        print(gameTime);
+        //print(gameTime);
     }
 
     public void Clear()
@@ -59,6 +59,7 @@ public class PlaySceneDirector : MonoBehaviour
 
     public void BackToMenu()
     {
+        SoundManager.Instance.MainLobbyMusic();
         SceneManager.LoadScene("MainLobby");
     }
 }

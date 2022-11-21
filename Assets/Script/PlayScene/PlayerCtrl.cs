@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 
 public class PlayerCtrl : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class PlayerCtrl : MonoBehaviour
     public Image hpBar;
     public EnemySpawn enemySpawn;
     public Vector3 nowPos;
-    public CamaeraCtrl camaera;
+    [FormerlySerializedAs("camaera")] public CameraCtrl camera;
     public PlaySceneDirector director;
 
     public int X;
@@ -23,7 +24,7 @@ public class PlayerCtrl : MonoBehaviour
     private Vector2 mousePos;
     private Vector2 transPos;
 
-    private float mxHP;
+    private float mxHp;
 
     public bool doTouch;
     public bool isTouch;
@@ -33,7 +34,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         Time.timeScale = 1;
         doTouch = false;
-        mxHP = HP;
+        mxHp = HP;
         for (int i = 0; i < tile.Length; i++)
         {
             Map tileMap = tile[i].GetComponent<Map>();
@@ -121,13 +122,13 @@ public class PlayerCtrl : MonoBehaviour
 
     public void GetDemeg()
     {
-        StartCoroutine(camaera.Shake());
+        StartCoroutine(camera.HitShake());
         HP--;
         if (HP<=0)
         {
             director.End();
         }
-        hpBar.fillAmount = HP / mxHP;
+        hpBar.fillAmount = HP / mxHp;
     }
 
     

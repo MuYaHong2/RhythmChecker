@@ -11,6 +11,7 @@ public class EnemySpawn : MonoBehaviour
     public GameObject range;
     public GameObject[] enemy;
     public PlayerCtrl player;
+    public CameraCtrl camera;
 
     public static IObjectPool<EnemyBasicCtrl> pown;
     public static IObjectPool<EnemyBasicCtrl> night;
@@ -181,6 +182,7 @@ public class EnemySpawn : MonoBehaviour
                 enemyCtrl[i].player = player;
                 enemyCtrl[i].num = i;
                 enemyCtrl[i].enemySpawn = this;
+                enemyCtrl[i].camera = camera;
                 break;
             }
         }

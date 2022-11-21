@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public float volume;
     public float bpm;
     public float bitTime;
+
+    private bool isInStage;
     public static GameManager Instance
     {
         get
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        
         //print(stageNum);
         //switch ((stageNum + 2))
         //{

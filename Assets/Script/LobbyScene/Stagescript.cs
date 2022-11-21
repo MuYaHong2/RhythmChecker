@@ -60,6 +60,7 @@ public class Stagescript : MonoBehaviour
                 break;
         }
         GameManager.instance.bitTime = 60 / GameManager.instance.bpm;
+        SoundManager.Instance.audioSource.Stop();
         SceneManager.LoadScene("PlayScene");
     }
 
