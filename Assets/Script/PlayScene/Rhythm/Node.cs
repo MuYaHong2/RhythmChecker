@@ -57,9 +57,9 @@ public class Node : MonoBehaviour
 
         var value = EaseManager.Evaluate(Ease.Linear, (f, r, t, g) => 0, timeCount, moveTime, DOTween.defaultEaseOvershootOrAmplitude, DOTween.defaultEasePeriod);
         var i = Mathf.Clamp01(value);
-        var 위치 = startPos + moveRange * i * direction;
+        var asd = startPos + moveRange * i * direction;
         //print(TimeRecord.gameTime-testTime);
-        transform.position = new Vector3(위치, -4.3f, 0);
+        transform.position = new Vector3(asd, -4.3f, 0);
         if (TimeRecord.gameTime - spawnTime>=(bitTime- 0.085) && TimeRecord.gameTime - spawnTime <= (bitTime + 0.085))
         {
             playerCtrl.doTouch = true;

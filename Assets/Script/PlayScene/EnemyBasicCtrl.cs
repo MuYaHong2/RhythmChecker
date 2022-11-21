@@ -54,6 +54,7 @@ public class EnemyBasicCtrl : MonoBehaviour
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void Attack()
     {
 

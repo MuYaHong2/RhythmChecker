@@ -55,7 +55,7 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
-    public void ButtonDown()
+    private void ButtonDown()
     {
         if (isTouch)
         {
