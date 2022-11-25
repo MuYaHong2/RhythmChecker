@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Pool;
+using UnityEngine.Serialization;
 
 public class EnemyBasicCtrl : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class EnemyBasicCtrl : MonoBehaviour
     public EnemySpawn enemySpawn;
     public IObjectPool<EnemyBasicCtrl> objectPool;
     public GameObject[] attackRanges;
-    public CameraCtrl camera;
+    public CameraCtrl cameraCtrl;
 
     public AudioClip attackSoundEffect1;
     public AudioClip attackSoundEffect2;
@@ -201,7 +202,7 @@ public class EnemyBasicCtrl : MonoBehaviour
         EnemySpawn.enemyAttackRange.Release(attackRange);
         transform.DOMove(position, 0.1f).OnComplete(() =>
         {
-            StartCoroutine(camera.Shake());
+            cameraCtrl.isShaking = StartCoroutine(cameraCtrl.Shake());
             if (position==player.transform.position)
             {
                 player.GetDemeg();
@@ -311,6 +312,8 @@ public class EnemyBasicCtrl : MonoBehaviour
 
     private void BishopAttack()
     {
+        cameraCtrl.isShaking = StartCoroutine(cameraCtrl.Shake());
+
         SoundManager.instance.audioSource.PlayOneShot(attackSoundEffect2);
 
         //for (int i = 0; i < range.Length-1; i++)
@@ -335,7 +338,6 @@ public class EnemyBasicCtrl : MonoBehaviour
         //print(startPos);
         transform.DOMove(_endPos, 0.25f).OnComplete(() =>
         {
-            StartCoroutine(camera.Shake());
             //_attackCount++;
             if (_attackCount<_maxAttackCount)
             {
@@ -383,6 +385,8 @@ public class EnemyBasicCtrl : MonoBehaviour
 
     private void RookAttack()
     {
+        cameraCtrl.isShaking = StartCoroutine(cameraCtrl.Shake());
+
         SoundManager.instance.audioSource.PlayOneShot(attackSoundEffect2);
 
         switch (_startPosNum)
@@ -402,7 +406,6 @@ public class EnemyBasicCtrl : MonoBehaviour
         
         transform.DOMove(_endPos, 0.25f).OnComplete(() =>
         {
-            StartCoroutine(camera.Shake());
             //_attackCount++;
             //Ready();
         });

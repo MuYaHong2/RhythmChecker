@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraCtrl : MonoBehaviour
 {
+    public Coroutine isShaking;
+    
     private  float _x;
     private  float _y;
 
@@ -15,19 +17,13 @@ public class CameraCtrl : MonoBehaviour
 
     public IEnumerator Shake()
     {
-        print("dfdfdf");
-        for (int i = 0; i < 5; i++)
+        if (isShaking==null)
         {
-            _x = Random.Range(-0.5f, 0.5f);
-            _y = Random.Range(-0.5f, 0.5f);
-            transform.position = new Vector3(_x, _y, -10);
-            yield return YieldInstructionCache.WaitForSeconds(0.01f);
-        }
-        transform.position = new Vector3(0, 0, -10);
-    }
+            isShaking = null;
 
-    public IEnumerator HitShake()
-    {
+            yield return null;
+        }
+        
         for (int i = 0; i < 5; i++)
         {
             _x = Random.Range(-0.1f, 0.1f);
@@ -35,6 +31,28 @@ public class CameraCtrl : MonoBehaviour
             transform.position = new Vector3(_x, _y, -10);
             yield return YieldInstructionCache.WaitForSeconds(0.01f);
         }
+
+        isShaking = null;
+        transform.position = new Vector3(0, 0, -10);
+    }
+
+    public IEnumerator HitShake()
+    {
+        if (isShaking==null)
+        {
+            isShaking = null;
+
+            yield return null;
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            _x = Random.Range(-0.1f, 0.1f);
+            _y = Random.Range(-0.1f, 0.1f);
+            transform.position = new Vector3(_x, _y, -10);
+            yield return YieldInstructionCache.WaitForSeconds(0.01f);
+        }
+        isShaking = null;
+
         transform.position = new Vector3(0, 0, -10);
     }
 }

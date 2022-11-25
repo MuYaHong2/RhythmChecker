@@ -13,8 +13,9 @@ public class PlayerCtrl : MonoBehaviour
     public Image hpBar;
     public EnemySpawn enemySpawn;
     public Vector3 nowPos;
-    [FormerlySerializedAs("camaera")] public CameraCtrl camera;
+    public CameraCtrl cameraCtrl;
     public PlaySceneDirector director;
+    public Animator animator;
 
     public int X;
     public int Y;
@@ -115,14 +116,18 @@ public class PlayerCtrl : MonoBehaviour
 
     public void Move()
     {
+        animator.SetBool("isMove", true);
         var position = new Vector3(positions[X, Y].transform.position.x, positions[X, Y].transform.position.y);
         //transform.position = position;
-        transform.DOMove(position, 0.1f);
+        transform.DOMove(position, 0.1f).OnComplete(() =>
+        {
+            animator.SetBool("isMove", false);
+        });
     }
 
     public void GetDemeg()
     {
-        StartCoroutine(camera.HitShake());
+        cameraCtrl.isShaking = StartCoroutine(cameraCtrl.HitShake());
         HP--;
         if (HP<=0)
         {

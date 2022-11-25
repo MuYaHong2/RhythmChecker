@@ -5,19 +5,20 @@ using DG.Tweening;
 using UnityEngine.Pool;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.Serialization;
 
 public class EnemySpawn : MonoBehaviour
 {
     public GameObject range;
     public GameObject[] enemy;
     public PlayerCtrl player;
-    public CameraCtrl camera;
+    public CameraCtrl cameraCtrl;
 
-    public static IObjectPool<EnemyBasicCtrl> pown;
-    public static IObjectPool<EnemyBasicCtrl> night;
-    public static IObjectPool<EnemyBasicCtrl> bishop;
-    public static IObjectPool<EnemyBasicCtrl> queen;
-    public static IObjectPool<EnemyBasicCtrl> king;
+    private static IObjectPool<EnemyBasicCtrl> pown;
+    private static IObjectPool<EnemyBasicCtrl> night;
+    private static IObjectPool<EnemyBasicCtrl> bishop;
+    private static IObjectPool<EnemyBasicCtrl> queen;
+    private static IObjectPool<EnemyBasicCtrl> king;
 
     public static IObjectPool<GameObject> enemyAttackRange;
 
@@ -72,20 +73,6 @@ public class EnemySpawn : MonoBehaviour
         {
             Destroy(_night.gameObject);
         }, false, 10000);
-
-        //enemyChatter[2] = new ObjectPool<GameObject>(() =>
-        //{
-        //    return Instantiate(enemy[2]);
-        //}, _rook =>
-        //{
-        //    _rook.gameObject.SetActive(true);
-        //}, _rook =>
-        //{
-        //    _rook.gameObject.SetActive(false);
-        //}, _rook =>
-        //{
-        //    Destroy(_rook.gameObject);
-        //}, false, 10000); 
         
         bishop = new ObjectPool<EnemyBasicCtrl>(() =>
         {
@@ -182,14 +169,11 @@ public class EnemySpawn : MonoBehaviour
                 enemyCtrl[i].player = player;
                 enemyCtrl[i].num = i;
                 enemyCtrl[i].enemySpawn = this;
-                enemyCtrl[i].camera = camera;
+                enemyCtrl[i].cameraCtrl = cameraCtrl;
                 break;
             }
         }
         
-        //enemyCtrl[_rear].Ready();
-        //_rear = (_rear + 1) % _maxSize;
-        //print(_rear);
         _isReady = false;
     }
 
@@ -213,7 +197,7 @@ public class EnemySpawn : MonoBehaviour
         {
             if (isDestoried[i] == false)
             {
-                if (enemyCtrl[i]!=null)
+                if (enemyCtrl[i] != null)
                 {
                     enemyCtrl[i].Attack();
                 }
