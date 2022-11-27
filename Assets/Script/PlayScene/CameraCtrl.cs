@@ -17,7 +17,7 @@ public class CameraCtrl : MonoBehaviour
 
     public IEnumerator Shake()
     {
-        if (isShaking==null)
+        if (isShaking!=null)
         {
             isShaking = null;
 
@@ -38,16 +38,16 @@ public class CameraCtrl : MonoBehaviour
 
     public IEnumerator HitShake()
     {
-        if (isShaking==null)
+        if (isShaking!=null)
         {
             isShaking = null;
-
+            print(isShaking);
             yield return null;
         }
         for (int i = 0; i < 5; i++)
         {
-            _x = Random.Range(-0.1f, 0.1f);
-            _y = Random.Range(-0.1f, 0.1f);
+            _x = Random.Range(-0.5f, 0.5f);
+            _y = Random.Range(-0.5f, 0.5f);
             transform.position = new Vector3(_x, _y, -10);
             yield return YieldInstructionCache.WaitForSeconds(0.01f);
         }

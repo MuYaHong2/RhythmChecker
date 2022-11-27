@@ -16,6 +16,7 @@ public class PlayerCtrl : MonoBehaviour
     public CameraCtrl cameraCtrl;
     public PlaySceneDirector director;
     public Animator animator;
+    public AudioClip hitSound;
 
     public int X;
     public int Y;
@@ -127,6 +128,9 @@ public class PlayerCtrl : MonoBehaviour
 
     public void GetDemeg()
     {
+        SoundManager.Instance.audioSource.PlayOneShot(hitSound);
+        cameraCtrl.StopAllCoroutines();
+        cameraCtrl.isShaking = null;
         cameraCtrl.isShaking = StartCoroutine(cameraCtrl.HitShake());
         HP--;
         if (HP<=0)

@@ -110,8 +110,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  cameraCtrl: {fileID: 0}
   attackSoundEffect1: {fileID: 8300000, guid: eb289be13db2d1a4dbdecebc07713284, type: 3}
-  attackSoundEffect2: {fileID: 8300000, guid: bcdf1cfe76c2ced49a66a787825e97dc, type: 3}
+  attackSoundEffect2: {fileID: 8300000, guid: 3b81c68305d33e54e92b9b652189f2f2, type: 3}
   range:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
