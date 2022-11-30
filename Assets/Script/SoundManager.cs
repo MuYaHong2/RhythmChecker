@@ -56,7 +56,7 @@ public class SoundManager : MonoBehaviour
     public void MusicPlay()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.clip = musics[GameManager.instance.stageNum-1];
+        audioSource.clip = musics[GameManager.instance.stageNum];
         musicTime = audioSource.clip.length;
         audioSource.Play();
     }

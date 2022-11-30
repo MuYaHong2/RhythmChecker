@@ -2,46 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 using UnityEngine.UI;
 
 public class Stagescript : MonoBehaviour
 {
     public GameObject stageimgs;
-    public GameObject Onepos;
-    public GameObject Twopos;
-    public GameObject Threepos;
+    public GameObject[] stagePos;
+    
 
     public float movespeed;
-    public int stageNum = 1;
+    public int stageNum;
 
     private void Awake()
     {
-        stageNum = 1;
+        Application.targetFrameRate = 60;
+        stageNum = 0;
     }
     private void Update()
     {
-        if (stageNum == 1)
-            stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Onepos.transform.position, movespeed);
-        else if(stageNum == 2)
-            stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Twopos.transform.position, movespeed);
-       else if(stageNum == 3)
-            stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Threepos.transform.position, movespeed);
+       //  if (stageNum == 1)
+       //      stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Onepos.transform.position, movespeed);
+       //  else if(stageNum == 2)
+       //      stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Twopos.transform.position, movespeed);
+       // else if(stageNum == 3)
+       //      stageimgs.transform.position = Vector2.MoveTowards(stageimgs.transform.position, Threepos.transform.position, movespeed);
+    }
+
+    private void StageMove(int num)
+    {
+        stageimgs.transform.DOLocalMoveX(stagePos[num].transform.localPosition.x, 0.5f);
     }
 
     public void leftbutton()
     {
-        if (stageNum == 1)
+        if (stageNum == 0)
             return;
         else
-            stageNum -= 1;
+            StageMove(--stageNum);
+            
     }
 
     public void rightbutton()
     {
-        if (stageNum == 3)
+        if (stageNum == 2)
             return;
         else
-            stageNum += 1;
+            StageMove(++stageNum);
     }
 
     public void Play()
@@ -49,13 +56,13 @@ public class Stagescript : MonoBehaviour
         GameManager.instance.stageNum = stageNum;
         switch ((stageNum))
         {
-            case 1:
+            case 0:
                 GameManager.instance.bpm = 80;
                 break;
-            case 2:
+            case 1:
                 GameManager.instance.bpm = 100;
                 break;
-            case 3:
+            case 2:
                 GameManager.instance.bpm = 120;
                 break;
         }

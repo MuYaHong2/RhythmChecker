@@ -20,7 +20,6 @@ public class PlaySceneDirector : MonoBehaviour
     void Start()
     {
         musicTime = 120;
-        print(musicTime);
     }
 
     // Update is called once per frame

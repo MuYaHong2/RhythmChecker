@@ -1657,9 +1657,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageimgs: {fileID: 66106142}
-  Onepos: {fileID: 1936861113}
-  Twopos: {fileID: 1948510405}
-  Threepos: {fileID: 1708885296}
+  stagePos:
+  - {fileID: 1936861113}
+  - {fileID: 1948510405}
+  - {fileID: 1708885296}
   movespeed: 0.25
   stageNum: 1
 --- !u!4 &978464293
@@ -2969,7 +2970,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a7c19fdad0c537b4d8492f5b660816e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e6cc13c17ef62c143953c9d00ce6b92e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

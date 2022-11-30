@@ -11,12 +11,12 @@ public class StageCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        backGround[GameManager.instance.stageNum - 1].SetActive(true);
-        if (GameManager.instance.stageNum - 1 == 0)
+        backGround[GameManager.instance.stageNum].SetActive(true);
+        if (GameManager.instance.stageNum == 0)
         {
             witchHand.SetActive(true);
         }
-        map[GameManager.instance.stageNum - 1].SetActive(true);
+        map[GameManager.instance.stageNum].SetActive(true);
     }
 
     // Update is called once per frame

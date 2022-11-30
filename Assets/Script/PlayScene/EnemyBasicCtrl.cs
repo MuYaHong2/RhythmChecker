@@ -25,6 +25,7 @@ public class EnemyBasicCtrl : MonoBehaviour
     public Vector3[] range;
 
     private GameObject attackRange;
+    private SpriteRenderer sr;
 
     private Vector3 _startPos;
     private Vector3 _endPos;
@@ -58,6 +59,8 @@ public class EnemyBasicCtrl : MonoBehaviour
         {
             _maxAttackCount = 3;
         }
+
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
