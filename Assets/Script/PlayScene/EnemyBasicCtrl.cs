@@ -16,6 +16,7 @@ public class EnemyBasicCtrl : MonoBehaviour
     public EnemySpawn enemySpawn;
     public IObjectPool<EnemyBasicCtrl> objectPool;
     public GameObject[] attackRanges;
+    public GameObject image;
     public CameraCtrl cameraCtrl;
 
     public AudioClip attackSoundEffect1;
@@ -25,7 +26,6 @@ public class EnemyBasicCtrl : MonoBehaviour
     public Vector3[] range;
 
     private GameObject attackRange;
-    private SpriteRenderer sr;
 
     private Vector3 _startPos;
     private Vector3 _endPos;
@@ -60,7 +60,6 @@ public class EnemyBasicCtrl : MonoBehaviour
             _maxAttackCount = 3;
         }
 
-        sr = GetComponent<SpriteRenderer>();
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
@@ -341,7 +340,7 @@ public class EnemyBasicCtrl : MonoBehaviour
         //print(startPos);
         transform.DOMove(_endPos, 0.25f).OnComplete(() =>
         {
-            //_attackCount++;
+            print(transform.position.y);
             if (_attackCount<_maxAttackCount)
             {
                 Ready();
@@ -422,6 +421,8 @@ public class EnemyBasicCtrl : MonoBehaviour
             }
         }
     }
+    
+    
 
     private void ReleaseThis()
     {

@@ -9,7 +9,7 @@ using UnityEngine.Serialization;
 public class PlayerCtrl : MonoBehaviour
 {
     public GameObject[] tile;
-    public GameObject[,] positions=new GameObject[5,5];
+    public GameObject[,] positions = new GameObject[5, 5];
     public Image hpBar;
     public EnemySpawn enemySpawn;
     public Vector3 nowPos;
@@ -23,6 +23,7 @@ public class PlayerCtrl : MonoBehaviour
 
     public float HP;
 
+    
     private Vector2 mousePos;
     private Vector2 transPos;
 
@@ -43,6 +44,7 @@ public class PlayerCtrl : MonoBehaviour
             positions[tileMap.H, tileMap.V] = tile[i];
             //print(tile[i].name);
         }
+
         X = 2;
         Y = 2;
         Move();
@@ -64,6 +66,7 @@ public class PlayerCtrl : MonoBehaviour
         {
             return;
         }
+
         if (doTouch)
         {
             if (transPos.x > 0 && transPos.y > 0)
@@ -86,6 +89,7 @@ public class PlayerCtrl : MonoBehaviour
                 Y++;
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
+
             //doTouch = false;
             //switch (direction)
             //{
@@ -112,17 +116,16 @@ public class PlayerCtrl : MonoBehaviour
             Move();
             isTouch = true;
         }
-        
     }
 
     public void Move()
     {
         animator.SetBool("isMove", true);
         var position = new Vector3(positions[X, Y].transform.position.x, positions[X, Y].transform.position.y);
-        //transform.position = position;
         transform.DOMove(position, 0.1f).OnComplete(() =>
         {
-            animator.SetBool("isMove", false);
+            animator.SetBool("isMove", false); 
+            
         });
     }
 
@@ -133,14 +136,13 @@ public class PlayerCtrl : MonoBehaviour
         cameraCtrl.isShaking = null;
         cameraCtrl.isShaking = StartCoroutine(cameraCtrl.HitShake());
         HP--;
-        if (HP<=0)
+        if (HP <= 0)
         {
             director.End();
         }
+
         hpBar.fillAmount = HP / mxHp;
     }
-
-    
 
     
 }
